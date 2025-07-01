@@ -1,0 +1,36 @@
+const routes = {
+    home: '/',
+    login: '/login',
+    register: '/register',
+    dashboardBusiness: '/dashboard',
+    businesses: '/businesses',
+    createBusiness: '/business/create',
+    businessOverview: '/business/:businessId',
+    business: '/business',
+    businessLocation: '/business/:businessId/location',
+    businessReports: '/business/:businessId/reports',
+    pricing: '/pricing',
+    notifications: '/notifications',
+    settings: '/settings',
+    // Payment routes
+    paymentSuccess: '/success',
+    paymentCancel: '/cancel',
+    notFound: '*',
+    // Admin routes
+    adminDashboard: '/dashboard',
+    adminUsers: '/users',
+    adminBusinesses: '/businesses',
+    adminTransactions: '/transactions',
+    adminReports: '/reports',
+    adminNotifications: '/notifications',
+    adminFeedbacks: '/feedbacks',
+    adminActivities: '/activities',
+    adminServices: '/services',
+    adminLocations: '/locations',
+    adminEvents: '/events',
+    adminSchedules: '/schedules',
+    adminSettings: '/settings',
+    adminAnalytics: '/analytics',
+}
+
+export default routes;
