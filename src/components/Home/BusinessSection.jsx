@@ -1,3 +1,4 @@
+
 import {
   Building2,
   TrendingUp,
@@ -21,6 +22,7 @@ const BusinessSection = () => (
 
           <h2 className="text-4xl font-bold text-gray-900">
             Phát triển doanh nghiệp của bạn với
+
             <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
               {" "}
               LocalExplorer
@@ -31,6 +33,7 @@ const BusinessSection = () => (
             Tham gia nền tảng khám phá địa phương hàng đầu Việt Nam và kết nối
             với hàng nghìn du khách đang tìm kiếm những trải nghiệm đích thực
             tại khu vực của bạn.
+
           </p>
 
           {/* Benefits */}
@@ -66,6 +69,7 @@ const BusinessSection = () => (
                 <p className="text-gray-600">
                   Tiếp cận khách hàng mới và tăng tỷ lệ đặt phòng của bạn
                 </p>
+
               </div>
             </div>
           </div>
@@ -77,6 +81,7 @@ const BusinessSection = () => (
             </button>
             <button className="border border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
               Xem thêm
+
             </button>
           </div>
         </div>
@@ -87,6 +92,7 @@ const BusinessSection = () => (
               Platform Statistics
             </h3>
 
+
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-3">
@@ -94,6 +100,7 @@ const BusinessSection = () => (
                 </div>
                 <div className="text-3xl font-bold text-gray-900">50K+</div>
                 <div className="text-sm text-gray-600">Khách du lịch</div>
+
               </div>
 
               <div className="text-center">
@@ -104,6 +111,7 @@ const BusinessSection = () => (
                 <div className="text-sm text-gray-600">
                   Đối tác doanh nghiệp
                 </div>
+
               </div>
 
               <div className="text-center">
@@ -112,6 +120,7 @@ const BusinessSection = () => (
                 </div>
                 <div className="text-3xl font-bold text-gray-900">85%</div>
                 <div className="text-sm text-gray-600">Tăng doanh thu</div>
+
               </div>
 
               <div className="text-center">
@@ -120,6 +129,7 @@ const BusinessSection = () => (
                 </div>
                 <div className="text-3xl font-bold text-gray-900">4.8</div>
                 <div className="text-sm text-gray-600">Đánh giá trung bình</div>
+
               </div>
             </div>
           </div>
@@ -140,12 +150,15 @@ const BusinessSection = () => (
               "Kể từ khi tham gia LocalExplorer, lượng đặt phòng của chúng tôi
               đã tăng 200%. Nền tảng này giúp dễ dàng tiếp cận những du khách
               thực sự quan tâm đến những trải nghiệm địa phương đích thực."
+
             </p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 );
 
 export default BusinessSection;
+

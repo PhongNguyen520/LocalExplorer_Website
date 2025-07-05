@@ -7,6 +7,7 @@ import { getListBusinessApi } from "../../api/ListBusiness"
 
 // const userBusinesses = [ ... ] // XÓA MOCK DATA
 
+
 const mainMenuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Doanh Nghiệp", url: "/businesses", icon: Building2 },
@@ -151,11 +152,14 @@ const Sidebar = () => {
                     ) : (
                       <span className="text-lg">🏢</span>
                     )}
+
                     {!isCollapsed && (
                       <span className="truncate">{business.name}</span>
                     )}
                   </div>
+
                 </Link>
+
               </div>
             ))}
 

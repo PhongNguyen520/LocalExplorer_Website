@@ -9,6 +9,7 @@ import {
 import Badge from "../../components/Business/ui/Badge";
 import NoImagePlaceholder from "../../components/Business/ui/NoImagePlaceholder";
 import { Plus, Star, MapPin } from "lucide-react";
+
 import Button from "../../components/Business/ui/Button";
 import { useEffect, useState } from "react";
 import { getListBusinessApi } from "../../api/ListBusiness";
@@ -69,7 +70,7 @@ const Businesses = () => {
   const getStatusBadge = (status) => {
     const statusConfig = {
       Active: { label: "Hoạt động", variant: "success" },
-      Pending: { label: "Chờ duyệt", variant: "warning" },
+      Pending: { label: "Chờ thanh toán", variant: "warning" },
       Inactive: { label: "Không hoạt động", variant: "secondary" },
     };
     return statusConfig[status] || statusConfig.Pending;
@@ -105,6 +106,7 @@ const Businesses = () => {
     );
   }
 
+
   return (
     <div className="p-6">
       <Header
@@ -118,6 +120,7 @@ const Businesses = () => {
           </Button>
         }
       />
+
 
       {businesses.length === 0 ? (
         <div className="mt-6">
@@ -241,6 +244,7 @@ const Businesses = () => {
           </div>
         </>
       )}
+
     </div>
   );
 };

@@ -1,3 +1,4 @@
+
 import {
   Smartphone,
   Building2,
@@ -8,6 +9,7 @@ import {
   Shield,
   Zap,
 } from "lucide-react";
+
 
 const FeaturesSection = () => (
   <section id="features" className="py-20 bg-white">
@@ -24,6 +26,7 @@ const FeaturesSection = () => (
           Kết nối du khách với những trải nghiệm địa phương đích thực thông qua
           ứng dụng di động của chúng tôi, đồng thời trao quyền cho các doanh
           nghiệp tiếp cận khách hàng mới thông qua nền tảng web của chúng tôi.
+
         </p>
       </div>
 
@@ -35,12 +38,14 @@ const FeaturesSection = () => (
               <Smartphone className="w-6 h-6 text-white" />
             </div>
             <div>
+
               <h3 className="text-2xl font-bold text-gray-900">
                 Khách du lịch
               </h3>
               <p className="text-blue-600 font-medium">
                 Trải nghiệm ứng dụng di động
               </p>
+
             </div>
           </div>
 
@@ -48,12 +53,14 @@ const FeaturesSection = () => (
             <div className="flex items-start space-x-3">
               <MapPin className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
               <div>
+
                 <h4 className="font-semibold text-gray-900">
                   Khám phá những viên ngọc ẩn
                 </h4>
                 <p className="text-gray-600 text-sm">
                   Tìm những trải nghiệm địa phương đích thực và những điểm đến
                   ít người biết đến.
+
                 </p>
               </div>
             </div>
@@ -66,6 +73,7 @@ const FeaturesSection = () => (
                 </h4>
                 <p className="text-gray-600 text-sm">
                   Các đề xuất do AI cung cấp dựa trên sở thích và vị trí của bạn
+  
                 </p>
               </div>
             </div>
@@ -73,6 +81,7 @@ const FeaturesSection = () => (
             <div className="flex items-start space-x-3">
               <Star className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
               <div>
+
                 <h4 className="font-semibold text-gray-900">
                   Đánh giá đã xác minh
                 </h4>
@@ -97,6 +106,7 @@ const FeaturesSection = () => (
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
+
               <h3 className="text-2xl font-bold text-gray-900">Doanh nghiệp</h3>
               <p className="text-orange-600 font-medium">
                 Quản lý nền tảng web
@@ -108,6 +118,7 @@ const FeaturesSection = () => (
             <div className="flex items-start space-x-3">
               <Users className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
               <div>
+
                 <h4 className="font-semibold text-gray-900">
                   Tiếp cận nhiều khách hàng hơn
                 </h4>
@@ -121,10 +132,12 @@ const FeaturesSection = () => (
             <div className="flex items-start space-x-3">
               <Shield className="w-5 h-5 text-orange-500 mt-1 flex-shrink-0" />
               <div>
+
                 <h4 className="font-semibold text-gray-900">Quản lý dễ dàng</h4>
                 <p className="text-gray-600 text-sm">
                   Quản lý, cập nhật tính khả dụng và theo dõi hiệu suất
                 </p>
+
               </div>
             </div>
 
@@ -135,6 +148,7 @@ const FeaturesSection = () => (
                 <p className="text-gray-600 text-sm">
                   Tăng khả năng hiển thị và thu hút nhiều khách hàng hơn để phát
                   triển doanh nghiệp của bạn
+
                 </p>
               </div>
             </div>
@@ -143,6 +157,7 @@ const FeaturesSection = () => (
           <div className="mt-6 pt-6 border-t border-orange-200">
             <button className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
               Đăng ký doanh nghiệp
+
             </button>
           </div>
         </div>
@@ -154,6 +169,7 @@ const FeaturesSection = () => (
           <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <MapPin className="w-8 h-8 text-blue-600" />
           </div>
+
           <h4 className="font-semibold text-gray-900 mb-2">Khám phá địa phương</h4>
           <p className="text-gray-600 text-sm">
             Tìm những trải nghiệm địa phương độc đáo và những viên ngọc ẩn giấu
@@ -164,6 +180,7 @@ const FeaturesSection = () => (
           <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Calendar className="w-8 h-8 text-green-600" />
           </div>
+
           <h4 className="font-semibold text-gray-900 mb-2">Kế hoạch thông minh</h4>
           <p className="text-gray-600 text-sm">
             Gợi ý hành trình được hỗ trợ bởi AI
@@ -178,20 +195,26 @@ const FeaturesSection = () => (
           <p className="text-gray-600 text-sm">
             Kết nối với những du khách khác và người dân địa phương
           </p>
+
         </div>
 
         <div className="text-center p-6">
           <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
             <Shield className="w-8 h-8 text-purple-600" />
           </div>
+
           <h4 className="font-semibold text-gray-900 mb-2">Đáng tin cậy</h4>
           <p className="text-gray-600 text-sm">
             Các doanh nghiệp đã được xác minh và đánh giá xác thực
           </p>
+
         </div>
       </div>
     </div>
   </section>
+
 );
 
 export default FeaturesSection;
+
+

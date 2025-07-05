@@ -3,6 +3,7 @@ import images from "../assets/images";
 import config from "../config";
 import { Link } from "react-router-dom";
 import { loginApi, getGoogleLoginUrlApi } from "../api/auth";
+
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../providers/AuthProvider";
@@ -38,6 +39,7 @@ const Login = () => {
         });
       }
 
+
       let token = Cookies.get("access_token");
       const decodedToken = jwtDecode(token);
 
@@ -61,22 +63,12 @@ const Login = () => {
       setError(err.response.data.message);
       Cookies.remove("access_token");
       Cookies.remove("refresh_token");
+
     }
     console.log("Login form submitted:", form);
     setLoading(false);
   };
 
-  // Handler for Google login
-  // const handleGoogleLogin = async () => {
-  //   try {
-  //     const returnUrl = window.location.origin + "/";
-  //     const res = await getGoogleLoginUrlApi(returnUrl);
-  //     const loginUrl = res.data.loginUrl;
-  //     window.location.href = loginUrl;
-  //   } catch (err) {
-  //     setError("Không thể đăng nhập với Google. Vui lòng thử lại sau.");
-  //   }
-  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
@@ -92,6 +84,7 @@ const Login = () => {
           <div className="flex flex-col items-center mb-8">
             <img src={images.logo} alt="logo" className="w-20 h-20" />
             <h2 className="text-2xl font-bold text-center mb-2">
+
               Đừng chỉ tưởng tượng về thiên đường,
               hãy trải nghiệm nó!
             </h2>
@@ -123,9 +116,12 @@ const Login = () => {
               <label className="flex items-center gap-2">
                 <input type="checkbox" className="accent-orange-500" /> Nhớ tôi
               </label>
-              <a href="#" className="text-orange-500 hover:underline">
+              <Link
+                to={config.routes.forgotPassword}
+                className="text-orange-500 hover:underline"
+              >
                 Quên mật khẩu?
-              </a>
+              </Link>
             </div>
             <button
               type="submit"
@@ -145,11 +141,13 @@ const Login = () => {
           </form>
           <p className="text-center text-sm text-gray-500 mt-6">
             Bạn chưa có tài khoản?{" "}
+
             <Link
               to={config.routes.register}
               className="text-orange-600 font-semibold hover:underline"
             >
               Đăng ký!
+
             </Link>
           </p>
         </div>

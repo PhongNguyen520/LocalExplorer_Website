@@ -33,9 +33,6 @@ export const CustomNotificationProvider = ({ children }) => {
     info: "border-blue-500 bg-blue-50"
   };
 
-  console.log("CustomNotificationProvider notifications:", notifications);
-  
-
   return (
     <CustomNotificationContext.Provider value={{ notify }}>
       {children}

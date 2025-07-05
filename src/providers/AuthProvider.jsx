@@ -85,6 +85,7 @@ export function AuthProvider({ children }) {
             throw error;
         }
     };
+
     
     useEffect(() => {
         if (accessToken) {

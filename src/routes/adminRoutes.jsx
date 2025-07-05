@@ -1,3 +1,4 @@
+
 import config from "../config/routes";
 import AdminLayout from "../layouts/AdminLayout";
 import UsersPage from "../pages/Admin/users";
@@ -29,4 +30,5 @@ export const adminRoutes = [
   { path: config.adminSchedules, component: SchedulesPage, layout: AdminLayout },
   { path: config.adminSettings, component: SettingsPage, layout: AdminLayout },
   // { path: config.adminAnalytics, component: AnalyticsPage, layout: AdminLayout },
+
 ];

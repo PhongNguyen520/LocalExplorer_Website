@@ -8,6 +8,7 @@ import { format, parse } from 'date-fns';
 import { vi } from 'date-fns/locale';
 import { createEventApi, updateEventApi, deleteEventApi } from '../../api/business/EventAPI';
 
+
 // Mock data
 const mockEvents = [
   {
@@ -128,6 +129,7 @@ console.log("value", value);
     }
   }
 
+
   return (
     <div >
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-6">
@@ -155,6 +157,7 @@ console.log("value", value);
                 <div>
                   <p className="text-gray-600">Ngày kết thúc:</p>
                   <p className="font-medium">{formatDate(event.endDate)}</p>
+
                 </div>
                 {/* <div>
                   <p className="text-gray-600">Giá vé:</p>

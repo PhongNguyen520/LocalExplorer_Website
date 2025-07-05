@@ -99,6 +99,7 @@ const DestinationsSection = () => (
 
               <button className="w-full bg-gray-100 text-gray-700 py-2 rounded-lg font-medium hover:bg-pink-500 hover:text-white transition-colors duration-200 group">
                 Khám phá ứng dụng
+
                 <ArrowRight className="w-4 h-4 inline ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

@@ -119,7 +119,7 @@ const Header = ({ title, description, breadcrumbs, actions, user }) => {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <img
-                    src={auth.avatar || images.avatar}
+                    src={auth?.avatar || images.avatar}
                     alt={"avatar"}
                     className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
                   />

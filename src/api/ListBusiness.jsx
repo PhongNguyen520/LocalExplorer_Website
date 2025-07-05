@@ -8,6 +8,7 @@ export const getListBusinessApi = async (index = 1, pageSize = 10) => {
     console.error("Error fetching business list:", error);
     throw error;
   }
+
 };
 export const getBusinessDetailApi = (data) => {
   return requestsPrivate.get('business/' + data);

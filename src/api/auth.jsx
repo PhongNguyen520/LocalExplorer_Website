@@ -14,4 +14,12 @@ export const refreshTokenApi = (data) => {
 
 export const getGoogleLoginUrlApi = (returnUrl) => {
   return requests.get('authen/google-login-url', { params: { returnUrl } });
+};
+
+export const forgotPasswordApi = (email) => {
+  return requests.post(`authen/forgot-password?email=${encodeURIComponent(email)}`);
+};
+
+export const resetPasswordApi = ({ token, email, newPassword }) => {
+  return requests.post('authen/reset-password', { token, email, newPassword });
 }; 

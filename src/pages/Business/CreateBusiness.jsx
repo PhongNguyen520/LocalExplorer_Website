@@ -16,7 +16,6 @@ import { getProvinces, getDistricts, getWards } from "../../api/business/Locatio
 import { SpinnerOverlay } from "../../components/Business/ui/SpinnerOverlay";
 import { Modal } from "../../components/Business/ui/Modal";
 
-
 const defaultLocation = {
   countryName: "Việt Nam",
   countryCode: "VN",
@@ -274,6 +273,7 @@ const CreateBusiness = () => {
           </div>
           <h2 className="text-xl font-bold text-green-700 text-center">Tạo doanh nghiệp thành công!</h2>
           <p className="text-gray-700 text-center">Vui lòng thanh toán gói cước để kích hoạt doanh nghiệp của bạn.</p>
+
         </div>
       </Modal>
       <div className="w-full">

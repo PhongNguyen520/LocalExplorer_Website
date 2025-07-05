@@ -19,6 +19,7 @@ const CallToActionSection = () => (
       <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
        Tải xuống ứng dụng của chúng tôi và tham gia cùng hàng ngàn du khách đã khám phá những trải nghiệm địa phương đích thực trên khắp Việt Nam.
 Cuộc phiêu lưu tiếp theo của bạn chỉ cách bạn một cú chạm.
+
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

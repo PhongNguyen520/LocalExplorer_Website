@@ -36,6 +36,7 @@ const HeroSection = () => (
             </div>
             <p className="text-gray-600 mb-4">
               Tải ứng dụng di động của chúng tôi để khám phá các điểm đến, lập kế hoạch hành trình và đặt trải nghiệm.
+
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button className="flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors">
@@ -52,11 +53,13 @@ const HeroSection = () => (
           <div className="bg-gradient-to-r from-orange-100 to-red-200 rounded-2xl p-6 ">
             <div className="flex items-center space-x-3 mb-4">
               <Users className="w-6 h-6" />
+
               <h3 className="text-lg font-semibold">Doanh nghiệp</h3>
             </div>
             <p className="mb-4 opacity-90">Tham gia mạng lưới doanh nghiệp địa phương của chúng tôi và tiếp cận hàng ngàn du khách.</p>
             <button className="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
               Đăng ký doanh nghiệp
+
             </button>
           </div>
         </div>

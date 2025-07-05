@@ -31,6 +31,8 @@ const routes = {
     adminSchedules: '/schedules',
     adminSettings: '/settings',
     adminAnalytics: '/analytics',
+    forgotPassword: '/forgot-password',
+    resetPassword: '/reset-password',
 }
 
 export default routes;

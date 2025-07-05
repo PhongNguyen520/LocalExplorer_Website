@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import Header from "../../components/Business/Header";
 import {
   Card,
@@ -142,6 +143,7 @@ const Dashboard = () => {
 
   return (
     <div className="p-6 space-y-6">
+
       <Header
         title="Dashboard"
         description="Tổng quan về tất cả businesses của bạn"
@@ -355,6 +357,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
       </div>
     </div>
   );

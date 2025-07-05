@@ -1,3 +1,4 @@
+
 import {
   MapPin,
   Mail,
@@ -7,6 +8,7 @@ import {
   Twitter,
 } from "lucide-react";
 import images from "../../assets/images";
+
 
 const Footer = () => (
   <footer className=" py-16">
@@ -29,6 +31,7 @@ const Footer = () => (
             Nền tảng khám phá địa phương hàng đầu Việt Nam kết nối du khách với
             những trải nghiệm đích thực và trao quyền cho các doanh nghiệp địa
             phương tiếp cận khách hàng mới.
+
           </p>
           <div className="space-y-2 text-sm text-gray-600">
             <div className="flex items-center space-x-2">
@@ -58,22 +61,26 @@ const Footer = () => (
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Làm việc
+
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Điểm đến
+
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Hướng dẫn
+
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Hỗ trợ
-              </a>
+
+              </a>  
             </li>
           </ul>
         </div>
@@ -85,11 +92,13 @@ const Footer = () => (
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Doanh nghiệp
+
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
-                Đối tác
+                      Đối tác
+
               </a>
             </li>
             <li>
@@ -100,11 +109,19 @@ const Footer = () => (
              <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Hợp tác
+
               </a>
             </li>
             <li>
               <a href="#" className="hover:text-pink-500 transition-colors">
                 Hỗ trợ
+
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-pink-500 transition-colors">
+                Business Support
+
               </a>
             </li>
           </ul>
@@ -118,6 +135,7 @@ const Footer = () => (
           <p className="text-gray-600 mb-6">
             Khám phá những viên ngọc ẩn giấu của Việt Nam
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors">
               Download for iOS
@@ -152,12 +170,14 @@ const Footer = () => (
             href="#"
             className="text-gray-400 hover:text-white transition-colors"
           >
+
             <Twitter className="w-5 h-5" />
           </a>
         </div>
       </div>
     </div>
   </footer>
-);
 
-export default Footer;
+)
+
+export default Footer
