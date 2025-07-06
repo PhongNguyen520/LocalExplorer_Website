@@ -14,7 +14,6 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { auth, setAuth } = useContext(AuthContext);
-  console.log("Auth context:", auth);
   
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,7 +22,6 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    console.log("API URL:", process.env.REACT_APP_URL_API);
     try {
       const res = await loginApi(form);
       const data = res.data.data;
@@ -52,10 +50,8 @@ const Login = () => {
         fullName: decodedToken.unique_name,
       });
 
-      // Start notification hub after successful login
       startNotificationHub(data.accessToken, (message) => {
         console.log("New notification received:", message);
-        // You can add a toast notification here
       });
 
     } catch (err) {
@@ -65,7 +61,6 @@ const Login = () => {
       Cookies.remove("refresh_token");
 
     }
-    console.log("Login form submitted:", form);
     setLoading(false);
   };
 

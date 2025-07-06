@@ -55,10 +55,8 @@ const DashboardPage = () => {
     const fetchDashboardData = async () => {
       try {
         const response = await getAdminOverViewApi();
-        console.log(response.data.data);
         setDashboardData(response.data.data);
       } catch (error) {
-        console.error("Error fetching dashboard data:", error);
       } finally {
         setLoading(false);
       }

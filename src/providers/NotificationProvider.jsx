@@ -11,14 +11,11 @@ export const NotificationProvider = ({ accessToken, children }) => {
   useEffect(() => {
     if (!accessToken) return;
     startNotificationHub(accessToken, (message) => {
-    //   if (!message.createdAt) message.createdAt = new Date().toISOString();
-    //   setNotifications(prev => [message, ...prev]);
       notify({
         message: message.title || 'Thông báo',
         description: message.content || 'Bạn có một thông báo mới.',
         type: 'info',
       });
-      console.log("message", message);
     });
     return () => stopNotificationHub();
   }, [accessToken, notify]);

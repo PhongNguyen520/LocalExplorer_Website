@@ -15,9 +15,7 @@ export function AuthProvider({ children }) {
     const [refreshToken, setRefreshToken] = useState(Cookies.get('refresh_token'));
     const refreshTimerRef = useRef(null);
 
-    console.log(accessToken);
     
-    // Function to set up automatic token refresh
     const setupTokenRefresh = (token) => {
         if (refreshTimerRef.current) {
             clearTimeout(refreshTimerRef.current);
@@ -26,20 +24,17 @@ export function AuthProvider({ children }) {
         try {
             const decodedToken = jwtDecode(token);
             const currentTime = Date.now() / 1000;
-            const timeUntilExpiry = (decodedToken.exp - currentTime) * 1000; // Convert to milliseconds
+            const timeUntilExpiry = (decodedToken.exp - currentTime) * 1000;
             
-            // Refresh token 2 minutes before expiry (15 minutes - 2 minutes = 13 minutes)
             const refreshTime = Math.max(timeUntilExpiry - (2 * 60 * 1000), 0);
             
             refreshTimerRef.current = setTimeout(() => {
                 refreshAccessToken();
             }, refreshTime);
         } catch (error) {
-            console.error('Error setting up token refresh:', error);
         }
     };
     
-    // Function to refresh token
     const refreshAccessToken = async () => {
         try {
             const currentAccessToken = Cookies.get('access_token');
@@ -56,15 +51,12 @@ export function AuthProvider({ children }) {
 
             const { accessToken: newAccessToken, refreshToken: newRefreshToken } = response.data.data;
 
-            // Update cookies - access token expires in 15 minutes, refresh token in 7 days
-            Cookies.set('access_token', newAccessToken, { expires: 1/96 }); // 15 minutes
+            Cookies.set('access_token', newAccessToken, { expires: 1/96 });
             Cookies.set('refresh_token', newRefreshToken, { expires: 7 });
 
-            // Update state
             setAccessToken(newAccessToken);
             setRefreshToken(newRefreshToken);
 
-            // Decode and update auth
             const decodedToken = jwtDecode(newAccessToken);
             setAuth({
                 isLoggedIn: true,
@@ -75,12 +67,10 @@ export function AuthProvider({ children }) {
                 fullName: decodedToken.unique_name,
             });
 
-            // Set up next automatic refresh
             setupTokenRefresh(newAccessToken);
 
             return newAccessToken;
         } catch (error) {
-            console.error('Error refreshing token:', error);
             logout();
             throw error;
         }
@@ -92,12 +82,9 @@ export function AuthProvider({ children }) {
             try {
                 const decodedToken = jwtDecode(accessToken);
                 
-                // Check if token is expired
                 const currentTime = Date.now() / 1000;
                 if (decodedToken.exp < currentTime) {
-                    // Token is expired, try to refresh
-                    refreshAccessToken().catch(() => {
-                        // If refresh fails, logout
+                    refreshAccessToken().catch(() => {      
                         logout();
                     });
                 } else {
@@ -114,7 +101,6 @@ export function AuthProvider({ children }) {
                 }
                 
             } catch (error) {
-                console.error('Error decoding token:', error);
                 logout();
             }
         }
@@ -125,10 +111,9 @@ export function AuthProvider({ children }) {
         setLoading(false)
     }, [accessToken]);
 
-    // Cleanup timer on unmount
     useEffect(() => {
         return () => {
-            if (refreshTimerRef.current) {
+            if (refreshTimerRef.current) {  
                 clearTimeout(refreshTimerRef.current);
             }
         };

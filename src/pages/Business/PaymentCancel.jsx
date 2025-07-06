@@ -22,12 +22,10 @@ const PaymentCancel = () => {
     const status = getPaymentStatusInfo(params.status, params.code);
     setPaymentData(params);
     setStatusInfo(status);
-    console.log('Payment Cancel Data:', params);
   }, [searchParams]);
 
   const handleRetryPayment = () => {
     if (paymentData.businessId) {
-      // Có thể redirect về trang thanh toán hoặc business detail
       navigate(`/business/${paymentData.businessId}`);
     }
   };

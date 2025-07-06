@@ -71,7 +71,6 @@ const mockEvents = [
 ]
 
 const BusinessEvents = ({value = []}) => {
-console.log("value", value);
 
   const getStatusVariant = (status) => {
     switch (status) {

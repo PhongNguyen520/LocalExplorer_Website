@@ -34,12 +34,10 @@ const SignUp = () => {
     setSuccess("")
     try {
       const res = await registerApi(form);
-      console.log("Registration response:", res.data);
       
       setSuccess("Đăng ký thành công! Kiểm tra email và xác minh tài khoản.")
       setForm(initialForm)
     } catch (err) {
-      console.log("Registration error:", err.response.data.message);
       setError(`${err.response.data.message || "Please try again later."}`)
     }
     setLoading(false)
