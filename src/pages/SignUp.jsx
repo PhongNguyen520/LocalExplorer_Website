@@ -151,30 +151,30 @@ const SignUp = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                         Họ
                       </label>
                       <input
-                        id="lastName"
-                        name="lastName"
+                        id="firstName"
+                        name="firstName"
                         type="text"
-                        placeholder="Enter last name"
-                        value={form.lastName}
+                        placeholder="Nhập họ"
+                        value={form.firstName}
                         onChange={handleChange}
                         required
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                         Tên
                       </label>
                       <input
-                        id="firstName"
-                        name="firstName"
+                        id="lastName"
+                        name="lastName"
                         type="text"
-                        placeholder="Enter first name"
-                        value={form.firstName}
+                        placeholder="Nhập tên"
+                        value={form.lastName}
                         onChange={handleChange}
                         required
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors text-sm"

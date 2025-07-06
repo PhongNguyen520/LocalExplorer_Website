@@ -9,56 +9,58 @@ import {
 } from "../../components/Business/ui/Card";
 import { getPricingPlanApi } from "../../api/business/PricingPlan";
 
-const pricingPlans = [
-  {
-    name: "Basic",
-    price: "299,000",
-    features: [
-      "Tối đa 5 hình ảnh",
-      "Thông tin cơ bản",
-      "Hỗ trợ email",
-      "1 sự kiện/tháng",
-    ],
-    current: false,
-  },
-  {
-    name: "Standard",
-    price: "599,000",
-    features: [
-      "Tối đa 15 hình ảnh",
-      "Thông tin chi tiết",
-      "Hỗ trợ 24/7",
-      "5 sự kiện/tháng",
-      "Phân tích cơ bản",
-    ],
-    current: false,
-  },
-  {
-    name: "Premium",
-    price: "999,000",
-    features: [
-      "Không giới hạn hình ảnh",
-      "Tất cả tính năng",
-      "Hỗ trợ ưu tiên",
-      "Không giới hạn sự kiện",
-      "Phân tích nâng cao",
-      "API access",
-    ],
-    current: true,
-  },
-];
-
 const Pricing = () => {
-  const [pricingPlans, setPricingPlans] = useState();
+  const [pricingPlans, setPricingPlans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect( () => async () => {
+  useEffect(() => {
+    const fetchPricingPlans = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const response = await getPricingPlanApi();
-        setPricingPlans(response.data.data);
+        console.log("API Response:", response); // Debug log
+        
+        if (response.data && response.data.data) {
+          // Transform API data to match expected structure
+          const transformedPlans = response.data.data.map(plan => ({
+            ...plan,
+            features: Array.isArray(plan.features) ? plan.features : [plan.features || 'Không có mô tả'],
+            fee: plan.fee || plan.price || '0'
+          }));
+          setPricingPlans(transformedPlans);
+        } else {
+          console.warn("No data from API");
+          setPricingPlans([]);
+        }
       } catch (error) {
         console.error("Error fetching pricing plans:", error);
+        setError(error.message || 'Có lỗi khi tải dữ liệu gói cước');
+        setPricingPlans([]);
+      } finally {
+        setLoading(false);
       }
-    }, []);
+    };
+
+    fetchPricingPlans();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="p-6">
+        <Header
+          title="Quản lý Gói cước"
+          description="Xem và nâng cấp gói dịch vụ của bạn"
+          breadcrumbs={[{ label: "Gói cước" }]}
+        />
+        <div className="mt-6 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Đang tải gói cước...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">
@@ -68,10 +70,26 @@ const Pricing = () => {
         breadcrumbs={[{ label: "Gói cước" }]}
       />
 
+      {error && (
+        <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-700 text-sm">
+            {error}
+          </p>
+        </div>
+      )}
+
+      {!loading && !error && pricingPlans.length === 0 && (
+        <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-yellow-700 text-sm">
+            Không có gói cước nào được tìm thấy.
+          </p>
+        </div>
+      )}
+
       <div className="grid gap-6 md:grid-cols-3 mt-6">
-        {pricingPlans && pricingPlans.map((plan) => (
+        {pricingPlans && pricingPlans.map((plan, index) => (
           <Card
-            key={plan.name}
+            key={plan.name || index}
             className={`${
               plan.current ? "border-blue-500 ring-2 ring-blue-100" : ""
             }`}
@@ -80,31 +98,40 @@ const Pricing = () => {
               <CardTitle className="text-xl">{plan.name}</CardTitle>
               <div className="mt-2">
                 <span className="text-3xl font-bold text-blue-600">
-                  {plan.fee}
+                  {plan.fee || plan.price}
                 </span>
                 <span className="text-gray-600"> VNĐ/tháng</span>
               </div>
-              {/* {plan.current && (
+              {plan.current && (
                 <span className="inline-block mt-2 px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                  Recommended
+                  Đang sử dụng
                 </span>
-              )} */}
+              )}
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 mb-6">
-                {/* {plan.features.map((feature, index) => ( */}
+                {Array.isArray(plan.features) ? (
+                  plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-2">
+                      <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
+                        <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      </div>
+                      <span className="text-sm text-gray-700">{feature}</span>
+                    </li>
+                  ))
+                ) : (
                   <li className="flex items-start gap-2">
                     <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
                       <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                     </div>
-                    <span className="text-sm text-gray-700">{plan.features}</span>
+                    <span className="text-sm text-gray-700">{plan.features || 'Không có mô tả'}</span>
                   </li>
-                {/* ))} */}
+                )}
               </ul>
 
-              {/* <Button variant={plan.current ? "outline" : "primary"} className="w-full" disabled={plan.current}>
+              <Button variant={plan.current ? "outline" : "primary"} className="w-full" disabled={plan.current}>
                 {plan.current ? "Đang sử dụng" : "Nâng cấp"}
-              </Button> */}
+              </Button>
             </CardContent>
           </Card>
         ))}

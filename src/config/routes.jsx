@@ -33,6 +33,7 @@ const routes = {
     adminAnalytics: '/analytics',
     forgotPassword: '/forgot-password',
     resetPassword: '/reset-password',
+    emailConfirmed: '/email-confirmed',
 }
 
 export default routes;
