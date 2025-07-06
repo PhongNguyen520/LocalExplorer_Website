@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
+import EmailConfirmed from "../pages/EmailConfirmed";
 
 export const publicRoutes = [
       { path: config.routes.home, component: Home, layout: null },
@@ -11,4 +12,5 @@ export const publicRoutes = [
      { path: config.routes.register, component: SignUp, layout: null },
      { path: config.routes.forgotPassword, component: ForgotPassword, layout: null },
      { path: config.routes.resetPassword, component: ResetPassword, layout: null },
+     { path: config.routes.emailConfirmed, component: EmailConfirmed, layout: null },
 ]

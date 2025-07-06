@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import Button from '../../components/Business/ui/Button';
 import { Badge } from 'antd';
 import { parsePaymentParams, formatCurrency, formatDateTime } from '../../utils/paymentUtils';
+import config from '../../config';
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -23,7 +24,7 @@ const PaymentSuccess = () => {
   };
 
   const handleGoHome = () => {
-    navigate('/business');
+    navigate(config.routes.businesses);
   };
 
   return (
@@ -158,20 +159,20 @@ const PaymentSuccess = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button
+          {/* <Button
             onClick={handleViewBusiness}
             className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
           >
             <ArrowRight className="mr-2 h-4 w-4" />
             Xem Business
-          </Button>
+          </Button> */}
           <Button
             onClick={handleGoHome}
             variant="outline"
             className="flex-1 border-gray-300 hover:bg-gray-50 py-3 rounded-xl font-semibold"
           >
             <Home className="mr-2 h-4 w-4" />
-            Về trang chủ
+            Quay về danh sách
           </Button>
         </div>
 
