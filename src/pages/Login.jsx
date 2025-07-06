@@ -66,85 +66,111 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-lg flex overflow-hidden">
-        <div className="hidden md:flex w-1/2 bg-blue-50 items-center justify-center p-8">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-4xl bg-white rounded-xl sm:rounded-2xl shadow-lg flex flex-col lg:flex-row overflow-hidden">
+        {/* Image Section */}
+        <div className="hidden lg:flex w-full lg:w-1/2 bg-blue-50 items-center justify-center p-6 sm:p-8">
           <img
             src={images.hero}
             alt="login"
-            className="max-h-96 object-contain"
+            className="max-h-80 sm:max-h-96 object-contain"
           />
         </div>
-        <div className="w-full md:w-1/2 flex flex-col justify-center p-8">
-          <div className="flex flex-col items-center mb-8">
-            <img src={images.logo} alt="logo" className="w-20 h-20" />
-            <h2 className="text-2xl font-bold text-center mb-2">
-
+        
+        {/* Form Section */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center p-6 sm:p-8">
+          <div className="flex flex-col items-center mb-6 sm:mb-8">
+            <img src={images.logo} alt="logo" className="w-16 h-16 sm:w-20 sm:h-20" />
+            <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 mt-4">
               Đừng chỉ tưởng tượng về thiên đường,
               hãy trải nghiệm nó!
             </h2>
-            <p className="text-gray-500 text-center mb-4">
+            <p className="text-gray-500 text-center mb-4 text-sm sm:text-base">
               Chúng tôi sẽ giúp bạn lên kế hoạch cho chuyến đi trong mơ của mình.
             </p>
           </div>
+          
           <form className="space-y-4" onSubmit={handleSubmit}>
-            <input
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
-              required
-            />
-            <input
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
-              required
-            />
-            {error && <div className="text-red-500 text-sm">{error}</div>}
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" className="accent-orange-500" /> Nhớ tôi
+            <div className="space-y-2">
+              <input
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 text-sm sm:text-base"
+                required
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 text-sm sm:text-base"
+                required
+              />
+            </div>
+            
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-sm text-red-600">{error}</p>
+              </div>
+            )}
+            
+            <div className="flex items-center justify-between text-xs sm:text-sm">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" className="accent-orange-500 w-4 h-4" /> 
+                <span>Nhớ tôi</span>
               </label>
               <Link
                 to={config.routes.forgotPassword}
-                className="text-orange-500 hover:underline"
+                className="text-orange-500 hover:underline font-medium"
               >
                 Quên mật khẩu?
               </Link>
             </div>
+            
             <button
               type="submit"
-              className="w-full bg-orange-500 text-white py-2 rounded font-semibold hover:bg-orange-600 transition"
+              className="w-full bg-orange-500 text-white py-2 sm:py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={loading}
             >
-              {loading ? "Đăng nhập..." : "Đăng nhập"}
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                  Đăng nhập...
+                </div>
+              ) : (
+                "Đăng nhập"
+              )}
             </button>
+            
+            {/* Google Login Button (commented out) */}
             {/* <button
               type="button"
-              className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded font-semibold hover:bg-gray-50 transition"
+              className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 sm:py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-sm sm:text-base"
               onClick={handleGoogleLogin}
             >
-              <img src={images.map} alt="Google" className="h-5 w-5" />
+              <img src={images.map} alt="Google" className="h-4 w-4 sm:h-5 sm:w-5" />
               Đăng nhập với Google
             </button> */}
           </form>
-          <p className="text-center text-sm text-gray-500 mt-6">
-            Bạn chưa có tài khoản?{" "}
-
-            <Link
-              to={config.routes.register}
-              className="text-orange-600 font-semibold hover:underline"
-            >
-              Đăng ký!
-
-            </Link>
-          </p>
+          
+          <div className="text-center text-xs sm:text-sm text-gray-500 mt-6">
+            <p>
+              Bạn chưa có tài khoản?{" "}
+              <Link
+                to={config.routes.register}
+                className="text-orange-600 font-semibold hover:underline"
+              >
+                Đăng ký!
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

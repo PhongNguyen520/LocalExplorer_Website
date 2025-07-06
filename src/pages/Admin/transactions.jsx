@@ -78,78 +78,128 @@ export default function TransactionsPage() {
   ]
 
   return (
-    <div>
-      <Card>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {statsArr.map((stat, idx) => {
-            const Icon = stat.icon
-            return (
-              <div key={idx} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center bg-${stat.color}-100`}>
-                    <Icon className={`w-6 h-6 text-${stat.color}-600`} />
-                  </div>
-                  <div className={`text-sm ${stat.trend === 'up' ? 'text-green-600' : stat.trend === 'down' ? 'text-red-600' : 'text-gray-600'}`}>{stat.change}</div>
-                </div>
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.title}</div>
-              </div>
-            )
-          })}
+    <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Quản lý giao dịch</h1>
+          <p className="text-sm sm:text-base text-slate-600 mt-1">Theo dõi và quản lý tất cả giao dịch trong hệ thống</p>
         </div>
-        <CardContent>
-          <div className="rounded-md border mt-8">
+      </div>
+
+      <Card className="border-0 shadow-lg">
+        <CardContent className="p-4 sm:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+            {statsArr.map((stat, idx) => {
+              const Icon = stat.icon
+              return (
+                <div key={idx} className="bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-100 p-4 sm:p-6">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center bg-${stat.color}-100`}>
+                      <Icon className={`w-5 h-5 sm:w-6 sm:h-6 text-${stat.color}-600`} />
+                    </div>
+                    <div className={`text-xs sm:text-sm ${stat.trend === 'up' ? 'text-green-600' : stat.trend === 'down' ? 'text-red-600' : 'text-gray-600'}`}>{stat.change}</div>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-gray-900">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{stat.title}</div>
+                </div>
+              )
+            })}
+          </div>
+          
+          <div className="rounded-md border overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Mã GD</TableHead>
-                  <TableHead>Người dùng</TableHead>
-                  <TableHead>Mô tả</TableHead>
-                  <TableHead>Số tiền</TableHead>
-                  <TableHead>Trạng thái</TableHead>
-                  <TableHead>Thời gian thanh toán</TableHead>
-                  <TableHead>Loại</TableHead>
-                  <TableHead>Tiền tệ</TableHead>
+                  <TableHead className="text-xs sm:text-sm">Mã GD</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden md:table-cell">Người dùng</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden lg:table-cell">Mô tả</TableHead>
+                  <TableHead className="text-xs sm:text-sm">Số tiền</TableHead>
+                  <TableHead className="text-xs sm:text-sm">Trạng thái</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden lg:table-cell">Thời gian thanh toán</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden md:table-cell">Loại</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden lg:table-cell">Tiền tệ</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {transactions.map((transaction) => (
                   <TableRow key={transaction.id}>
-                    <TableCell className="font-medium">{transaction.orderCode}</TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        <img src={transaction.avatar || defaultAvatar} alt={transaction.userName} className="w-8 h-8 rounded-full object-cover border" />
-                        <span>{transaction.userName}</span>
+                    <TableCell className="font-medium text-xs sm:text-sm">
+                      <div className="min-w-0">
+                        <div className="truncate">{transaction.orderCode}</div>
+                        <div className="text-xs text-slate-500 md:hidden">
+                          {transaction.userName}
+                        </div>
                       </div>
                     </TableCell>
-                    <TableCell>{transaction.description}</TableCell>
-                    <TableCell>{formatCurrency(transaction.amount, transaction.currency)}</TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      <div className="flex items-center gap-2">
+                        <img src={transaction.avatar || defaultAvatar} alt={transaction.userName} className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border" />
+                        <span className="text-xs sm:text-sm truncate">{transaction.userName}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="hidden lg:table-cell text-xs sm:text-sm">
+                      <div className="max-w-xs truncate">{transaction.description}</div>
+                    </TableCell>
+                    <TableCell className="text-xs sm:text-sm font-medium">
+                      {formatCurrency(transaction.amount, transaction.currency)}
+                    </TableCell>
                     <TableCell>
                       <Badge
                         variant={transaction.status === "Completed" ? "default" : transaction.status === "Pending" ? "outline" : "destructive"}
+                        className="text-xs"
                       >
                         {transaction.status}
                       </Badge>
                     </TableCell>
-                    <TableCell>{formatDate(transaction.paidAt)}</TableCell>
-                    <TableCell>{transaction.type}</TableCell>
-                    <TableCell>{transaction.currency || "VND"}</TableCell>
+                    <TableCell className="hidden lg:table-cell text-xs sm:text-sm">
+                      {formatDate(transaction.paidAt)}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell text-xs sm:text-sm">
+                      {transaction.type}
+                    </TableCell>
+                    <TableCell className="hidden lg:table-cell text-xs sm:text-sm">
+                      {transaction.currency || "VND"}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-          <div className="flex items-center justify-end space-x-2 py-4">
-            <Button variant="outline" size="sm" disabled={pageIndex === 1} onClick={() => setPageIndex(pageIndex - 1)}>
-              Previous
-            </Button>
-            {[...Array(totalPages)].map((_, i) => (
-              <Button key={i} variant={pageIndex === i + 1 ? 'default' : 'outline'} size="sm" onClick={() => setPageIndex(i + 1)}>{i + 1}</Button>
-            ))}
-            <Button variant="outline" size="sm" disabled={pageIndex === totalPages} onClick={() => setPageIndex(pageIndex + 1)}>
-              Next
-            </Button>
-            <select value={pageSize} onChange={e => { setPageSize(Number(e.target.value)); setPageIndex(1); }} className="ml-4 border rounded px-2 py-1">
+          
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-2 py-4">
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" size="sm" disabled={pageIndex === 1} onClick={() => setPageIndex(pageIndex - 1)} className="text-xs">
+                Trước
+              </Button>
+              <div className="flex items-center space-x-1">
+                {[...Array(Math.min(totalPages, 5))].map((_, i) => {
+                  const pageNum = i + 1;
+                  return (
+                    <Button 
+                      key={i} 
+                      variant={pageIndex === pageNum ? 'default' : 'outline'} 
+                      size="sm" 
+                      onClick={() => setPageIndex(pageNum)}
+                      className="text-xs w-8 h-8 p-0"
+                    >
+                      {pageNum}
+                    </Button>
+                  );
+                })}
+                {totalPages > 5 && (
+                  <span className="text-xs text-slate-500 px-2">...</span>
+                )}
+              </div>
+              <Button variant="outline" size="sm" disabled={pageIndex === totalPages} onClick={() => setPageIndex(pageIndex + 1)} className="text-xs">
+                Sau
+              </Button>
+            </div>
+            <select 
+              value={pageSize} 
+              onChange={e => { setPageSize(Number(e.target.value)); setPageIndex(1); }} 
+              className="border rounded px-2 py-1 text-xs sm:text-sm"
+            >
               {[10, 20, 50].map(size => <option key={size} value={size}>{size}/trang</option>)}
             </select>
           </div>

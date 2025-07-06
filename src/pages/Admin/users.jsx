@@ -141,33 +141,33 @@ export default function UsersPage() {
   const totalPages = Math.ceil(totalItems / query.PageSize) || 1;
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
             Quản lý người dùng
           </h1>
-          <p className="text-slate-600 mt-1">
+          <p className="text-sm sm:text-base text-slate-600 mt-1">
             Quản lý tất cả người dùng trong hệ thống
           </p>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
-            className="border-slate-200 hover:bg-slate-50"
+            className="border-slate-200 hover:bg-slate-50 text-sm"
           >
             <Download className="w-4 h-4 mr-2" />
             Xuất dữ liệu
           </Button>
-          <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700">
+          <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-sm">
             <Plus className="w-4 h-4 mr-2" />
             Thêm người dùng
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {statsArr.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -175,15 +175,15 @@ export default function UsersPage() {
               key={index}
               className={`border-0 shadow-lg bg-gradient-to-br from-${stat.color}-50 to-${stat.color}-100`}
             >
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-${stat.color}-500 text-white shadow-lg`}
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center bg-${stat.color}-500 text-white shadow-lg`}
                   >
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div
-                    className={`flex items-center space-x-1 text-sm font-semibold ${
+                    className={`flex items-center space-x-1 text-xs sm:text-sm font-semibold ${
                       stat.trend === "up"
                         ? "text-emerald-600"
                         : stat.trend === "down"
@@ -192,20 +192,20 @@ export default function UsersPage() {
                     }`}
                   >
                     {stat.trend === "up" ? (
-                      <ArrowUp className="w-4 h-4" />
+                      <ArrowUp className="w-3 h-3 sm:w-4 sm:h-4" />
                     ) : stat.trend === "down" ? (
-                      <ArrowDown className="w-4 h-4" />
+                      <ArrowDown className="w-3 h-3 sm:w-4 sm:h-4" />
                     ) : (
-                      <TrendingUp className="w-4 h-4" />
+                      <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
                     )}
                     <span>{stat.change}</span>
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-1">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
                     <CountUp end={stat.value} duration={1.2} separator="," />
                   </h3>
-                  <p className="text-slate-600 text-sm font-medium mb-1">
+                  <p className="text-slate-600 text-xs sm:text-sm font-medium mb-1">
                     {stat.title}
                   </p>
                   <p className="text-xs text-slate-500">{stat.description}</p>
@@ -217,21 +217,21 @@ export default function UsersPage() {
       </div>
 
       <Card className="border-0 shadow-lg">
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-10">
+        <CardContent className="p-4 sm:p-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="relative">
-                <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
                   type="search"
                   placeholder="Tìm kiếm người dùng..."
-                  className="w-80 pl-10"
+                  className="w-full sm:w-80 pl-10 text-sm"
                   value={query.Search}
                   onChange={handleSearch}
                 />
               </div>
               <Select value={query.Status} onValueChange={handleStatusChange}>
-                <SelectTrigger className="w-50 bg-white">
+                <SelectTrigger className="w-full sm:w-50 bg-white text-sm">
                   <SelectValue placeholder="Lọc theo trạng thái">
                     Tất cả trạng thái
                   </SelectValue>
@@ -257,6 +257,7 @@ export default function UsersPage() {
                 variant="outline"
                 size="sm"
                 onClick={() => setOpenFilterSheet(true)}
+                className="text-sm"
               >
                 <Filter className="w-4 h-4 mr-2" />
                 Bộ lọc nâng cao
@@ -268,56 +269,52 @@ export default function UsersPage() {
 
       {/* Users Table */}
       <Card className="border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle>Danh sách người dùng</CardTitle>
-          <CardDescription>
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="text-lg sm:text-xl">Danh sách người dùng</CardTitle>
+          <CardDescription className="text-sm">
             Hiển thị {users.length} trong tổng số {totalItems} người dùng
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="rounded-md border">
+        <CardContent className="p-0 sm:p-6">
+          <div className="rounded-md border overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Người dùng</TableHead>
-                  <TableHead>Thông tin liên hệ</TableHead>
-                  <TableHead>Thông tin cá nhân</TableHead>
-                  <TableHead>Bảo mật</TableHead>
-                  <TableHead>Hoạt động</TableHead>
-                  <TableHead>Trạng thái</TableHead>
-                  <TableHead className="text-right">Hành động</TableHead>
+                  <TableHead className="text-xs sm:text-sm">Người dùng</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden md:table-cell">Thông tin liên hệ</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden lg:table-cell">Thông tin cá nhân</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden lg:table-cell">Bảo mật</TableHead>
+                  <TableHead className="text-xs sm:text-sm hidden md:table-cell">Hoạt động</TableHead>
+                  <TableHead className="text-xs sm:text-sm">Trạng thái</TableHead>
+                  <TableHead className="text-right text-xs sm:text-sm">Hành động</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {users.map((user) => (
                   <TableRow key={user.id} className="hover:bg-slate-50">
-                    {/* <TableCell>
-                      <input type="checkbox" className="rounded" />
-                    </TableCell> */}
                     <TableCell>
-                      <div className="flex items-center gap-3">
-                        <Avatar className="w-10 h-10">
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
                           <AvatarImage
                             src={user.avatar || images.avatar}
                             alt={`${user.fullName}`}
                           />
-                          {/* <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-                            {user.firstName.charAt(0)}
-                            {user.lastName.charAt(0)}
-                          </AvatarFallback> */}
                         </Avatar>
-                        <div>
-                          <p className="font-medium text-slate-900">
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-slate-900 text-sm sm:text-base truncate">
                             {user.firstName} {user.lastName}
+                          </p>
+                          <p className="text-xs text-slate-500 truncate md:hidden">
+                            {user.email}
                           </p>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <Mail className="w-4 h-4 text-slate-400" />
-                          <span className="text-sm">{user.email}</span>
+                          <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                          <span className="text-xs sm:text-sm truncate">{user.email}</span>
                           {user.emailConfirmed && (
                             <Badge variant="outline" className="text-xs">
                               Đã xác thực
@@ -325,34 +322,26 @@ export default function UsersPage() {
                           )}
                         </div>
                         <div className="flex items-center gap-2">
-                          <Phone className="w-4 h-4 text-slate-400" />
-                          <span className="text-sm">{user.phoneNumber}</span>
-                          {/* {user.phoneNumberConfirmed && (
-                            <Badge variant="outline" className="text-xs">
-                              Đã xác thực
-                            </Badge>
-                          )} */}
+                          <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                          <span className="text-xs sm:text-sm">{user.phoneNumber}</span>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-slate-400" />
-                          <span className="text-sm">
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
+                          <span className="text-xs sm:text-sm">
                             {user.age} tuổi,{" "}
                             {user.gender === "Male" ? "Nam" : "Nữ"}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm"></span>
-                        </div>
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <Shield className="w-4 h-4 text-slate-400" />
+                          <Shield className="w-3 h-3 sm:w-4 sm:h-4 text-slate-400" />
                           {user.twoFactorEnabled ? (
                             <Badge variant="default" className="text-xs">
                               2FA Bật
@@ -370,9 +359,9 @@ export default function UsersPage() {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="hidden md:table-cell">
                       <div className="space-y-1">
-                        <p className="text-sm font-medium">
+                        <p className="text-xs sm:text-sm font-medium">
                           {user.scheduleCount} lịch trình
                         </p>
                         <p className="text-xs text-slate-500">
@@ -384,14 +373,14 @@ export default function UsersPage() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Badge className={getStatusColor(user.status)}>
+                      <Badge className={`${getStatusColor(user.status)} text-xs`}>
                         {user.status === "Active"
                           ? "Hoạt động"
                           : "Không hoạt động"}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-1 sm:gap-2">
                         <Button
                           variant="ghost"
                           size="sm"
@@ -399,11 +388,12 @@ export default function UsersPage() {
                             setModalUser(user);
                             setOpenUserModal(true);
                           }}
+                          className="h-8 w-8 p-0"
                         >
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
                         </Button>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="w-4 h-4" />
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                          <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
                         </Button>
                       </div>
                     </TableCell>
@@ -412,8 +402,8 @@ export default function UsersPage() {
               </TableBody>
             </Table>
           </div>
-          <div className="flex items-center justify-between space-x-2 py-4">
-            <div className="text-sm text-slate-500">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-2 py-4">
+            <div className="text-xs sm:text-sm text-slate-500">
               Hiển thị {users.length} trong tổng số {totalItems} người dùng
             </div>
             <div className="flex items-center space-x-2">
@@ -424,10 +414,11 @@ export default function UsersPage() {
                 onClick={() =>
                   setQuery((q) => ({ ...q, PageIndex: q.PageIndex - 1 }))
                 }
+                className="text-xs"
               >
                 Trước
               </Button>
-              <span>
+              <span className="text-xs sm:text-sm">
                 Trang {query.PageIndex} / {totalPages}
               </span>
               <Button
@@ -437,6 +428,7 @@ export default function UsersPage() {
                 onClick={() =>
                   setQuery((q) => ({ ...q, PageIndex: q.PageIndex + 1 }))
                 }
+                className="text-xs"
               >
                 Sau
               </Button>

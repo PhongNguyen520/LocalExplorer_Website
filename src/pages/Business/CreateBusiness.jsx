@@ -327,40 +327,39 @@ const CreateBusiness = () => {
 
 
   return (
-    <div className="p-6 flex justify-center">
+    <div className="p-2 sm:p-4 md:p-6 flex justify-center">
       {/* Overlay loading spinner */}
       <SpinnerOverlay show={loading} />
       {/* Modal popup thành công */}
       <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-16 h-16 flex items-center justify-center rounded-full bg-green-100 mb-2">
-            <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <div className="flex flex-col items-center gap-4 p-4">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-green-100 mb-2">
+            <svg className="w-6 h-6 sm:w-10 sm:h-10 text-green-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-green-700 text-center">Tạo doanh nghiệp thành công!</h2>
-          <p className="text-gray-700 text-center">Vui lòng thanh toán gói cước để kích hoạt doanh nghiệp của bạn.</p>
-
+          <h2 className="text-lg sm:text-xl font-bold text-green-700 text-center">Tạo doanh nghiệp thành công!</h2>
+          <p className="text-gray-700 text-center text-sm sm:text-base">Vui lòng thanh toán gói cước để kích hoạt doanh nghiệp của bạn.</p>
         </div>
       </Modal>
-      <div className="w-full">
+      <div className="w-full max-w-4xl">
         <Header
           breadcrumbs={[
             { label: "Doanh nghiệp", href: "/businesses" },
             { label: "Tạo mới", href: "/businesses" },
           ]}
         />
-        <form className="space-y-8 mt-6" onSubmit={handleSubmit}>
+        <form className="space-y-4 sm:space-y-6 md:space-y-8 mt-4 sm:mt-6" onSubmit={handleSubmit}>
           <Card>
-            <CardHeader>
-              <CardTitle>Thông Tin Doanh Nghiệp</CardTitle>
-              <CardDescription>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Thông Tin Doanh Nghiệp</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
                 Điền thông tin chi tiết về doanh nghiệp của bạn
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Tên Doanh Nghiệp *
@@ -371,7 +370,7 @@ const CreateBusiness = () => {
                     onChange={handleChange}
                     required
                     placeholder="Nhập tên business"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   />
                 </div>
                 <div className="space-y-2">
@@ -384,7 +383,7 @@ const CreateBusiness = () => {
                     onChange={handleChange}
                     required
                     placeholder="Mô tả ngắn gọn về business"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -398,7 +397,7 @@ const CreateBusiness = () => {
                   onChange={handleChange}
                   rows={3}
                   placeholder="Mô tả chi tiết về business của bạn"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                 />
               </div>
               <div className="space-y-2">
@@ -410,7 +409,7 @@ const CreateBusiness = () => {
                   value={form.website}
                   onChange={handleChange}
                   placeholder="https://website.com"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                 />
               </div>
               <div className="space-y-2">
@@ -426,13 +425,13 @@ const CreateBusiness = () => {
                           handleHighlightChange(idx, e.target.value)
                         }
                         placeholder={`Điểm nổi bật #${idx + 1}`}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                       />
                       {form.hightlight.length > 1 && (
                         <button
                           type="button"
                           onClick={() => removeHighlight(idx)}
-                          className="p-2 text-red-500 hover:bg-red-100 rounded"
+                          className="p-2 text-red-500 hover:bg-red-100 rounded flex-shrink-0"
                         >
                           <Trash2 size={16} />
                         </button>
@@ -442,13 +441,13 @@ const CreateBusiness = () => {
                   <button
                     type="button"
                     onClick={addHighlight}
-                    className="flex items-center gap-1 text-blue-600 hover:underline mt-1"
+                    className="flex items-center gap-1 text-blue-600 hover:underline mt-1 text-sm"
                   >
                     <Plus size={16} /> Thêm điểm nổi bật
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-gray-700">
                     Giờ mở cửa
@@ -458,7 +457,7 @@ const CreateBusiness = () => {
                     value={form.openTime}
                     onChange={handleChange}
                     type="time"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   />
                 </div>
                 <div className="space-y-2">
@@ -470,7 +469,7 @@ const CreateBusiness = () => {
                     value={form.closeTime}
                     onChange={handleChange}
                     type="time"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   />
                 </div>
               </div>
@@ -479,41 +478,41 @@ const CreateBusiness = () => {
 
           {/* Chọn dịch vụ */}
           <Card>
-            <CardHeader>
-              <CardTitle>Chọn dịch vụ *</CardTitle>
-              <CardDescription>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Chọn dịch vụ *</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
                 Chọn các loại hình dịch vụ phù hợp với doanh nghiệp của bạn
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 p-4 sm:p-6">
               <input
                 type="text"
                 placeholder="Tìm kiếm dịch vụ..."
                 value={serviceSearch}
                 onChange={(e) => setServiceSearch(e.target.value)}
-                className="w-full mb-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mb-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
               />
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                 {servicesToShow.map((service) => {
                   const selected = form.services.includes(service.id);
                   return (
                     <div
                       key={service.id}
-                      className={`flex flex-col items-start gap-2 p-4 rounded-lg border cursor-pointer transition-all shadow-sm hover:shadow-md h-full min-h-[120px] ${
+                      className={`flex flex-col items-start gap-2 p-3 sm:p-4 rounded-lg border cursor-pointer transition-all shadow-sm hover:shadow-md h-full min-h-[100px] sm:min-h-[120px] ${
                         selected
                           ? "border-blue-600 bg-blue-50"
                           : "border-gray-200 bg-white"
                       }`}
                       onClick={() => handleServiceChange(service.id)}
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         <i
-                          className={`fas ${service.icon} text-2xl ${
+                          className={`fas ${service.icon} text-xl sm:text-2xl ${
                             selected ? "text-blue-600" : "text-gray-500"
                           }`}
                         ></i>
                         <span
-                          className={`font-semibold text-base ${
+                          className={`font-semibold text-sm sm:text-base ${
                             selected ? "text-blue-700" : "text-gray-800"
                           }`}
                         >
@@ -542,13 +541,13 @@ const CreateBusiness = () => {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Địa chỉ</CardTitle>
-              <CardDescription>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Địa chỉ</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
                 Nhập thông tin địa chỉ chi tiết cho doanh nghiệp
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 p-4 sm:p-6">
            
               {/* Địa chỉ hành chính */}
               <div className="space-y-2">
@@ -572,7 +571,7 @@ const CreateBusiness = () => {
                       },
                     }));
                   }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                 >
                   <option value="">Chọn tỉnh/thành phố</option>
                   {Array.isArray(provinces) && provinces.map(p => (
@@ -600,7 +599,7 @@ const CreateBusiness = () => {
                       },
                     }));
                   }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   disabled={!form.location.provinceCode}
                 >
                   <option value="">Chọn quận/huyện</option>
@@ -627,7 +626,7 @@ const CreateBusiness = () => {
                       },
                     }));
                   }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                   disabled={!form.location.districtCode}
                 >
                   <option value="">Chọn phường/xã</option>
@@ -648,20 +647,20 @@ const CreateBusiness = () => {
                   value={form.location.addressDetail}
                   onChange={handleLocationChange}
                   placeholder="Nhập địa chỉ chi tiết"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
                 />
               </div>
 
               {/* Vĩ độ, Kinh độ */}
               <div className="space-y-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <label className="block text-sm font-medium text-gray-700">Tọa độ địa lý</label>
                   <div className="flex gap-2">
                     <button
                       type="button"
                       onClick={getCoordinatesFromSelectedLocation}
                       disabled={isGettingLocation || (!form.location.provinceName && !form.location.districtName)}
-                      className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-2 sm:px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isGettingLocation ? "Đang lấy..." : "Lấy từ địa chỉ"}
                     </button>
@@ -669,13 +668,13 @@ const CreateBusiness = () => {
                       type="button"
                       onClick={getCurrentUserLocation}
                       disabled={isGettingLocation}
-                      className="px-3 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-2 sm:px-3 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isGettingLocation ? "Đang lấy..." : "Vị trí hiện tại"}
                     </button>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-2">
                     <label className="block text-sm font-medium text-gray-700">Vĩ độ (latitude)</label>
                     <input 
@@ -683,7 +682,7 @@ const CreateBusiness = () => {
                       value={form.location.latitude || ""} 
                       onChange={handleLocationChange} 
                       placeholder="Vĩ độ (không bắt buộc)" 
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base" 
                     />
                   </div>
                   <div className="space-y-2">
@@ -693,7 +692,7 @@ const CreateBusiness = () => {
                       value={form.location.longitude || ""} 
                       onChange={handleLocationChange} 
                       placeholder="Kinh độ (không bắt buộc)" 
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base" 
                     />
                   </div>
                 </div>
@@ -716,13 +715,13 @@ const CreateBusiness = () => {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle>Chọn gói cước *</CardTitle>
-              <CardDescription>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-lg sm:text-xl">Chọn gói cước *</CardTitle>
+              <CardDescription className="text-sm sm:text-base">
                 Chọn gói cước phù hợp cho doanh nghiệp của bạn
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-4 sm:p-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {pricingPlans.map((plan) => {
                   const isSelected = String(form.pricingPlanId) === String(plan.id);
@@ -736,33 +735,33 @@ const CreateBusiness = () => {
                       }`}
                       onClick={() => handlePricingPlanSelect(plan.id)}
                     >
-                      <CardHeader>
+                      <CardHeader className="p-4">
                         <div className="flex items-center justify-between">
-                          <CardTitle className="text-lg">{plan.name}</CardTitle>
+                          <CardTitle className="text-base sm:text-lg">{plan.name}</CardTitle>
                           {isSelected && (
-                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                              <div className="w-3 h-3 bg-white rounded-full"></div>
+                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
                             </div>
                           )}
                         </div>
-                        <div className="text-2xl font-bold text-blue-600 mt-2">
+                        <div className="text-xl sm:text-2xl font-bold text-blue-600 mt-2">
                           {plan.fee ? plan.fee.toLocaleString() : ""}{" "}
-                          <span className="text-sm font-normal text-gray-600">
+                          <span className="text-xs sm:text-sm font-normal text-gray-600">
                             VNĐ/tháng
                           </span>
                         </div>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="p-4">
                         <ul className="space-y-3 mb-3">
                           <li className="flex items-start gap-2">
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
+                            <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center mt-0.5 ${
                               isSelected ? "bg-blue-100" : "bg-green-100"
                             }`}>
-                              <div className={`w-2 h-2 rounded-full ${
+                              <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${
                                 isSelected ? "bg-blue-600" : "bg-green-600"
                               }`}></div>
                             </div>
-                            <span className="text-sm text-gray-700">
+                            <span className="text-xs sm:text-sm text-gray-700">
                               {plan.features}
                             </span>
                           </li>
@@ -776,15 +775,15 @@ const CreateBusiness = () => {
           </Card>
 
           {error && (
-                <div className="text-red-600 font-semibold">{error}</div>
+                <div className="text-red-600 font-semibold text-sm sm:text-base">{error}</div>
               )}
 
-          <div className="flex gap-4 pt-6 justify-end">
-            <Button variant="outline" to="/businesses" type="button">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6 justify-end">
+            <Button variant="outline" to="/businesses" type="button" className="w-full sm:w-auto">
               <X className="mr-2 h-4 w-4" />
               Hủy
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="w-full sm:w-auto">
               <Save className="mr-2 h-4 w-4" />
               {loading ? "Đang tạo..." : "Tạo Business"}
             </Button>
