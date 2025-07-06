@@ -101,7 +101,6 @@ export default function UsersPage() {
     getAdminUsersApi(query)
       .then(res => {
         const data = res.data.data;
-        console.log("Fetched users data:", data.stats);
         
         setStats(data.stats);
         setUsers(data.users.items);

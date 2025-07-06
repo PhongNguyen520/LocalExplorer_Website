@@ -7,7 +7,6 @@ import Button from "../../components/Business/ui/Button"
 
 
 const BusinessServices = ({value = []}) => {
-console.log("value", value);
 
   return (
     <div >

@@ -55,7 +55,6 @@ const mockFeedbacks = [
 ];
 
 const BusinessFeedbacks = ({ value = [] }) => {
-  console.log("value", value);
 
   const avgRating = 4.8;
   const totalFeedbacks = value.length;

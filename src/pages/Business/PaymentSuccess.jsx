@@ -14,7 +14,6 @@ const PaymentSuccess = () => {
   useEffect(() => {
     const params = parsePaymentParams(searchParams);
     setPaymentData(params);
-    console.log('Payment Success Data:', params);
   }, [searchParams]);
 
   const handleViewBusiness = () => {

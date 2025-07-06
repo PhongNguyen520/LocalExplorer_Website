@@ -3,9 +3,10 @@ import * as signalR from "@microsoft/signalr";
 let connection = null;
 
 export const startNotificationHub = (accessToken, onReceiveNotification) => {
+  var url = process.env.REACT_APP_URL_API;
   connection = new signalR.HubConnectionBuilder()
-    .withUrl(`https://localhost:7105/notificationHub`, {
-      accessTokenFactory: () => accessToken
+    .withUrl(`${url}/notificationHub`, {
+      accessTokenFactory: () => accessToken,
     })
     .withAutomaticReconnect()
     .build();

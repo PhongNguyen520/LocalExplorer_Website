@@ -465,8 +465,6 @@ const BusinessOverview = () => {
   };
   const handleServiceSubmit = async (e) => {
 
-    console.log("Service Form Data:", serviceForm);
-    console.log("");
     
     e.preventDefault();
     setServiceLoading(true);

@@ -1,14 +1,12 @@
 import { requestsPrivate } from "../../utils/requests";
 
 export const createBusinessServiceApi = (data) => {
-  console.log("Create Business Service Data:", data);
   
   // data: { name, description, price, discount, availability, duration, inclusions, exclustions, condition, businessId }
   return requestsPrivate.post('business-service/create', data);
 };
 
 export const updateBusinessServiceApi = (data) => {
-  console.log("Update Business Service Data:", data);
   
   // data: { id, name, description, price, discount, availability, duration, inclusions, exclustions, condition, status }
   return requestsPrivate.put('business-service/update', data);

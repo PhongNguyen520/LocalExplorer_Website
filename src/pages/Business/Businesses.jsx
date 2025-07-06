@@ -30,7 +30,6 @@ const Businesses = () => {
     try {
       setLoading(true);
       const res = await getListBusinessApi(page, pageSize);
-      console.log("Businesses data:", res.data.data);
 
       const { items, totalItems, currentPage, totalPages } = res.data.data;
       setBusinesses(items);
@@ -40,7 +39,6 @@ const Businesses = () => {
         total: totalItems,
       });
     } catch (error) {
-      console.error("Fetch error:", error);
     } finally {
       setLoading(false);
     }

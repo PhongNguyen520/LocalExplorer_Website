@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { getPricingPlanApi } from "../../api/business/PricingPlan";
 import { getBusinessType } from "../../api/business/BusinessType";
 import { createBusinessApi } from "../../api/ListBusiness";
-import { getProvinces, getDistricts, getWards } from "../../api/business/LocationAPI";
+import { getProvinces, getDistricts, getWards, getCoordinatesFromAddress, getCurrentLocation } from "../../api/business/LocationAPI";
 import { SpinnerOverlay } from "../../components/Business/ui/SpinnerOverlay";
 import { Modal } from "../../components/Business/ui/Modal";
 
@@ -61,6 +61,7 @@ const CreateBusiness = () => {
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [createdBusinessId, setCreatedBusinessId] = useState("");
+  const [isGettingLocation, setIsGettingLocation] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,11 +89,13 @@ const CreateBusiness = () => {
         } else {
           console.error('Invalid provinces data:', data);
           setProvinces([]);
+          setError("Không thể tải danh sách tỉnh/thành phố. Vui lòng thử lại sau.");
         }
       })
       .catch(err => {
         console.error('Error fetching provinces:', err);
         setProvinces([]);
+        setError("Không thể kết nối đến API địa chỉ. Vui lòng kiểm tra kết nối mạng và thử lại.");
       })
       .finally(() => setLoadingProvinces(false));
   }, []);
@@ -112,11 +115,13 @@ const CreateBusiness = () => {
         } else {
           console.error('Invalid districts data:', data);
           setDistricts([]);
+          setError("Không thể tải danh sách quận/huyện. Vui lòng thử lại sau.");
         }
       })
       .catch(err => {
         console.error('Error fetching districts:', err);
         setDistricts([]);
+        setError("Không thể kết nối đến API địa chỉ. Vui lòng kiểm tra kết nối mạng và thử lại.");
       })
       .finally(() => setLoadingDistricts(false));
   }, [form.location.provinceCode]);
@@ -135,11 +140,13 @@ const CreateBusiness = () => {
         } else {
           console.error('Invalid wards data:', data);
           setWards([]);
+          setError("Không thể tải danh sách phường/xã. Vui lòng thử lại sau.");
         }
       })
       .catch(err => {
         console.error('Error fetching wards:', err);
         setWards([]);
+        setError("Không thể kết nối đến API địa chỉ. Vui lòng kiểm tra kết nối mạng và thử lại.");
       })
       .finally(() => setLoadingWards(false));
   }, [form.location.districtCode]);
@@ -186,19 +193,79 @@ const CreateBusiness = () => {
     }));
   };
 
+  // Hàm lấy tọa độ từ địa chỉ đã chọn
+  const getCoordinatesFromSelectedLocation = async () => {
+    if (!form.location.provinceName && !form.location.districtName && !form.location.wardName) {
+      setError("Vui lòng chọn ít nhất tỉnh/thành phố để lấy tọa độ!");
+      return;
+    }
+
+    setIsGettingLocation(true);
+    setError("");
+    
+    try {
+      const coordinates = await getCoordinatesFromAddress(form.location);
+      if (coordinates) {
+        setForm(prev => ({
+          ...prev,
+          location: {
+            ...prev.location,
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude
+          }
+        }));
+        setSuccess("Đã lấy tọa độ thành công!");
+      } else {
+        setError("Không thể lấy tọa độ từ địa chỉ này. Vui lòng thử lại hoặc nhập thủ công.");
+      }
+    } catch (error) {
+      setError("Có lỗi xảy ra khi lấy tọa độ. Vui lòng thử lại.");
+    } finally {
+      setIsGettingLocation(false);
+    }
+  };
+
+  // Hàm lấy vị trí hiện tại của user
+  const getCurrentUserLocation = async () => {
+    setIsGettingLocation(true);
+    setError("");
+    
+    try {
+      const coordinates = await getCurrentLocation();
+      setForm(prev => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude
+        }
+      }));
+      setSuccess("Đã lấy vị trí hiện tại thành công!");
+    } catch (error) {
+      console.error('Error getting current location:', error);
+      if (error.code === 1) {
+        setError("Bạn đã từ chối quyền truy cập vị trí. Vui lòng cho phép trong cài đặt trình duyệt.");
+      } else if (error.code === 2) {
+        setError("Không thể xác định vị trí. Vui lòng kiểm tra kết nối mạng.");
+      } else if (error.code === 3) {
+        setError("Hết thời gian chờ xác định vị trí. Vui lòng thử lại.");
+      } else {
+        setError("Có lỗi xảy ra khi lấy vị trí hiện tại. Vui lòng thử lại.");
+      }
+    } finally {
+      setIsGettingLocation(false);
+    }
+  };
+
   const handlePricingPlanSelect = (id) => {
-    console.log("Selecting pricing plan with ID:", id);
     setForm((prev) => {
       const newForm = { ...prev, pricingPlanId: id };
-      console.log("New form state:", newForm);
       return newForm;
     });
   };
 
-  console.log("Current form state:", form);
 
   const handleSubmit = async (e) => {
-    console.log("Submitting form data:", form);
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -586,15 +653,64 @@ const CreateBusiness = () => {
               </div>
 
               {/* Vĩ độ, Kinh độ */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Vĩ độ (latitude)</label>
-                  <input name="latitude" value={form.location.latitude || ""} onChange={handleLocationChange} placeholder="Vĩ độ (không bắt buộc)" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <label className="block text-sm font-medium text-gray-700">Tọa độ địa lý</label>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={getCoordinatesFromSelectedLocation}
+                      disabled={isGettingLocation || (!form.location.provinceName && !form.location.districtName)}
+                      className="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isGettingLocation ? "Đang lấy..." : "Lấy từ địa chỉ"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={getCurrentUserLocation}
+                      disabled={isGettingLocation}
+                      className="px-3 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isGettingLocation ? "Đang lấy..." : "Vị trí hiện tại"}
+                    </button>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Kinh độ (longitude)</label>
-                  <input name="longitude" value={form.location.longitude || ""} onChange={handleLocationChange} placeholder="Kinh độ (không bắt buộc)" className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Vĩ độ (latitude)</label>
+                    <input 
+                      name="latitude" 
+                      value={form.location.latitude || ""} 
+                      onChange={handleLocationChange} 
+                      placeholder="Vĩ độ (không bắt buộc)" 
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Kinh độ (longitude)</label>
+                    <input 
+                      name="longitude" 
+                      value={form.location.longitude || ""} 
+                      onChange={handleLocationChange} 
+                      placeholder="Kinh độ (không bắt buộc)" 
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    />
+                  </div>
                 </div>
+                {(form.location.latitude && form.location.longitude) && (
+                  <div className="text-xs text-gray-500 bg-gray-50 p-2 rounded">
+                    <strong>Tọa độ hiện tại:</strong> {form.location.latitude}, {form.location.longitude}
+                    <br />
+                    <a 
+                      href={`https://www.google.com/maps?q=${form.location.latitude},${form.location.longitude}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      Xem trên Google Maps →
+                    </a>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -610,7 +726,6 @@ const CreateBusiness = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {pricingPlans.map((plan) => {
                   const isSelected = String(form.pricingPlanId) === String(plan.id);
-                  console.log(`Plan ${plan.id} is selected:`, isSelected);
                   return (
                     <Card
                       key={plan.id}
