@@ -136,19 +136,19 @@ export default function BusinessesPage() {
   ];
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Quản lý doanh nghiệp</h1>
-          <p className="text-slate-600 mt-1">Quản lý tất cả doanh nghiệp đối tác trong hệ thống</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Quản lý doanh nghiệp</h1>
+          <p className="text-sm sm:text-base text-slate-600 mt-1">Quản lý tất cả doanh nghiệp đối tác trong hệ thống</p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Button variant="outline" className="border-slate-200 hover:bg-slate-50">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+          <Button variant="outline" className="border-slate-200 hover:bg-slate-50 text-sm">
             <Download className="w-4 h-4 mr-2" />
             Xuất dữ liệu
           </Button>
-          <Button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700">
+          <Button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-sm">
             <Plus className="w-4 h-4 mr-2" />
             Thêm doanh nghiệp
           </Button>
@@ -156,20 +156,20 @@ export default function BusinessesPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {statsArr.map((stat, idx) => {
           const Icon = stat.icon;
           return (
             <Card key={idx} className={`border-0 shadow-lg bg-gradient-to-br from-${stat.color}-50 to-${stat.color}-100`}>
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className={`text-${stat.color}-600 text-sm font-medium`}>{stat.title}</p>
-                    <p className={`text-3xl font-bold text-${stat.color}-900`}><CountUp end={stat.value} duration={1.2} separator="," /></p>
-                    <p className={`text-${stat.color}-600 text-xs mt-1`}>{stat.change} ({stat.description})</p>
+                  <div className="min-w-0 flex-1">
+                    <p className={`text-${stat.color}-600 text-xs sm:text-sm font-medium truncate`}>{stat.title}</p>
+                    <p className={`text-2xl sm:text-3xl font-bold text-${stat.color}-900`}><CountUp end={stat.value} duration={1.2} separator="," /></p>
+                    <p className={`text-${stat.color}-600 text-xs mt-1 truncate`}>{stat.change} ({stat.description})</p>
                   </div>
-                  <div className={`w-12 h-12 bg-${stat.color}-500 rounded-xl flex items-center justify-center`}>
-                    <Icon className="w-6 h-6 text-white" />
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-${stat.color}-500 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ml-3`}>
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                 </div>
               </CardContent>
@@ -180,21 +180,21 @@ export default function BusinessesPage() {
 
       {/* Filters and Search */}
       <Card className="border-0 shadow-lg">
-        <CardContent className="p-6">
-          <form className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-4">
+        <CardContent className="p-4 sm:p-6">
+          <form className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="relative">
-                <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <Input
                   type="search"
                   placeholder="Tìm kiếm doanh nghiệp..."
-                  className="w-80 pl-10"
+                  className="w-full sm:w-80 pl-10 text-sm"
                   value={query.Search}
                   onChange={handleSearch}
                 />
               </div>
             </div>
-            <Button variant="outline" size="sm" onClick={() => setOpenFilterSheet(true)}>
+            <Button variant="outline" size="sm" onClick={() => setOpenFilterSheet(true)} className="text-sm">
               <Filter className="w-4 h-4 mr-2" />
               Bộ lọc nâng cao
             </Button>

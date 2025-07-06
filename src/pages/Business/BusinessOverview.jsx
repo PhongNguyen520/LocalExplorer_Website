@@ -922,7 +922,7 @@ const BusinessOverview = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="max-w-7xl mx-auto p-4 md:p-8">
+      <div className="max-w-7xl mx-auto p-2 sm:p-4 md:p-8">
         <Header
           title={business.name}
           description="Thông tin chi tiết và quản lý business"
@@ -933,25 +933,25 @@ const BusinessOverview = () => {
         />
 
         {business && (
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {/* Hero Section with Enhanced Design */}
-            <div className="relative overflow-hidden rounded-3xl shadow-2xl mb-8">
-              <div className="relative h-[400px] md:h-[500px]">
-                                    <img
-                      src={
-                        backgroundPreview ||
-                        business.background ||
-                        images.noImage
-                      }
-                      alt={business.name}
-                      className="w-full h-full object-cover"
-                    />
+            <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl mb-4 sm:mb-6 md:mb-8">
+              <div className="relative h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]">
+                <img
+                  src={
+                    backgroundPreview ||
+                    business.background ||
+                    images.noImage
+                  }
+                  alt={business.name}
+                  className="w-full h-full object-cover"
+                />
                 {/* Nút chỉnh sửa background */}
                 <label
                   htmlFor="background-upload"
-                  className="absolute top-4 right-4 bg-white/80 rounded-full p-2 shadow cursor-pointer hover:bg-purple-100 transition-opacity opacity-80 hover:opacity-100 border border-purple-200 z-20"
+                  className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 rounded-full p-1.5 sm:p-2 shadow-lg cursor-pointer hover:bg-purple-100 transition-all opacity-90 hover:opacity-100 border border-purple-200 z-20"
                 >
-                  <Edit3 className="w-5 h-5 text-purple-600" />
+                  <Edit3 className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
                   <input
                     id="background-upload"
                     type="file"
@@ -964,23 +964,23 @@ const BusinessOverview = () => {
                 {backgroundFile && (
                   <form
                     onSubmit={handleBackgroundSubmit}
-                    className="absolute top-20 right-4 z-30 flex flex-col items-end gap-2"
+                    className="absolute top-10 sm:top-16 right-2 sm:right-4 z-30 flex flex-col items-end gap-2"
                   >
                     <Button
                       type="submit"
                       size="sm"
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                      className="bg-purple-600 hover:bg-purple-700 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-xs"
                       disabled={editLoading}
                     >
                       {editLoading ? "Đang lưu..." : "Cập nhật nền"}
                     </Button>
                   </form>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
 
                 {/* Logo + nút chỉnh sửa logo */}
-                <div className="absolute top-8 left-8 group">
-                  <div className="w-28 h-28 rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-white relative">
+                <div className="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-8 md:left-8 group">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden border-2 sm:border-3 md:border-4 border-white shadow-2xl bg-white relative">
                     <img
                       src={logoPreview || business.logo || images.noImage}
                       alt={`${business.name} logo`}
@@ -989,9 +989,9 @@ const BusinessOverview = () => {
                     {/* Nút chỉnh sửa logo */}
                     <label
                       htmlFor="logo-upload"
-                      className="absolute bottom-2 right-2 bg-white/80 rounded-full p-2 shadow cursor-pointer hover:bg-blue-100 transition-opacity opacity-80 group-hover:opacity-100 border border-blue-200"
+                      className="absolute -bottom-1 -right-1 sm:bottom-1 sm:right-1 md:bottom-2 md:right-2 bg-white/90 rounded-full p-1 sm:p-1.5 shadow-lg cursor-pointer hover:bg-blue-100 transition-all opacity-90 group-hover:opacity-100 border border-blue-200"
                     >
-                      <Edit3 className="w-5 h-5 text-blue-600" />
+                      <Edit3 className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 text-blue-600" />
                       <input
                         id="logo-upload"
                         type="file"
@@ -1005,12 +1005,12 @@ const BusinessOverview = () => {
                   {logoFile && (
                     <form
                       onSubmit={handleLogoSubmit}
-                      className="flex flex-col items-center mt-2"
+                      className="flex flex-col items-center mt-1 sm:mt-2"
                     >
                       <Button
                         type="submit"
                         size="sm"
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-xs"
                         disabled={editLoading}
                       >
                         {editLoading ? "Đang lưu..." : "Cập nhật logo"}
@@ -1019,51 +1019,67 @@ const BusinessOverview = () => {
                   )}
                 </div>
 
-                {/* Business Info Overlay */}
-                <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h1 className="text-4xl font-bold mb-4">
-                        {business.name}
-                      </h1>
-                      <div className="flex items-center gap-8">
-                        <div className="flex items-center gap-4">
-                          <span className="text-3xl font-bold">
-                            {business.avgRating}
-                          </span>
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`w-6 h-6 ${
-                                  i < Math.floor(business.avgRating)
-                                    ? "fill-yellow-400 text-yellow-400"
-                                    : "text-gray-300"
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-lg opacity-90">
-                            ({business.totalFeedback.toLocaleString()} đánh giá)
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <MapPin className="w-5 h-5" />
-                          <span className="text-lg opacity-90">
-                            {business.location}
-                          </span>
-                        </div>
-
+                {/* Business Info Overlay - Moved to bottom */}
+                <div className="absolute bottom-0 left-0 right-0 text-white">
+                  {/* Gradient overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent"></div>
+                  
+                  {/* Content container */}
+                  <div className="relative p-3 sm:p-4 md:p-6 lg:p-8">
+                    <div className="flex flex-col sm:gap-4 md:gap-6">
+                      {/* Business Name */}
+                      <div className="flex-1">
+                        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">
+                          {business.name}
+                        </h1>
                       </div>
-                    </div>
 
-                    <div className="text-right">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                        <p className="text-lg opacity-90">Giá trung bình</p>
-                        <p className="text-2xl font-bold">
-                          {formatPrice(business.cost)}
-                        </p>
+                      {/* Rating and Location Row */}
+                      <div className="flex flex-row items-center justify-between gap-3 sm:gap-4">
+                        {/* Left side - Rating and Location */}
+                        <div className="flex flex-col gap-2 sm:gap-3">
+                          {/* Rating Section */}
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                                {business.avgRating}
+                              </span>
+                              <div className="flex">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star
+                                    key={i}
+                                    className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 ${
+                                      i < Math.floor(business.avgRating)
+                                        ? "fill-yellow-400 text-yellow-400"
+                                        : "text-gray-300"
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                            <span className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90">
+                              ({business.totalFeedback.toLocaleString()} đánh giá)
+                            </span>
+                          </div>
+
+                          {/* Location Section */}
+                          <div className="flex items-center gap-1 sm:gap-2">
+                            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
+                            <span className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 truncate">
+                              {business.location}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Right side - Price Section */}
+                        <div className="flex justify-end">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-3 md:p-4 lg:p-6 border border-white/20">
+                            <p className="text-xs sm:text-sm md:text-base lg:text-lg opacity-90 mb-1">Giá trung bình</p>
+                            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold">
+                              {formatPrice(business.cost)}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1072,70 +1088,70 @@ const BusinessOverview = () => {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                <div className="absolute top-0 right-0 w-12 h-12 bg-white/20 rounded-full -translate-y-6 translate-x-6"></div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8">
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-3 sm:p-4 md:p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-full -translate-y-4 translate-x-4 sm:-translate-y-6 sm:translate-x-6"></div>
                 <div className="relative">
-                  <div className="text-2xl font-bold mb-2">
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
                     {business.totalFeedback}
                   </div>
-                  <div className="text-blue-100 font-medium">Đánh giá</div>
+                  <div className="text-blue-100 font-medium text-xs sm:text-sm">Đánh giá</div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                <div className="absolute top-0 right-0 w-12 h-12 bg-white/20 rounded-full -translate-y-6 translate-x-6"></div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-3 sm:p-4 md:p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-full -translate-y-4 translate-x-4 sm:-translate-y-6 sm:translate-x-6"></div>
                 <div className="relative">
-                  <div className="text-2xl font-bold mb-2">{events.length}</div>
-                  <div className="text-green-100 font-medium">Sự kiện</div>
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">{events.length}</div>
+                  <div className="text-green-100 font-medium text-xs sm:text-sm">Sự kiện</div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                <div className="absolute top-0 right-0 w-12 h-12 bg-white/20 rounded-full -translate-y-6 translate-x-6"></div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 p-3 sm:p-4 md:p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-full -translate-y-4 translate-x-4 sm:-translate-y-6 sm:translate-x-6"></div>
                 <div className="relative">
-                  <div className="text-2xl font-bold mb-2">
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
                     {services.length}
                   </div>
-                  <div className="text-purple-100 font-medium">Dịch vụ</div>
+                  <div className="text-purple-100 font-medium text-xs sm:text-sm">Dịch vụ</div>
                 </div>
               </div>
 
-              <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                <div className="absolute top-0 right-0 w-12 h-12 bg-white/20 rounded-full -translate-y-6 translate-x-6"></div>
+              <div className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 p-3 sm:p-4 md:p-6 text-white hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/20 rounded-full -translate-y-4 translate-x-4 sm:-translate-y-6 sm:translate-x-6"></div>
                 <div className="relative">
-                  <div className="text-2xl font-bold mb-2">
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2">
                     {business.images?.length || 0}
                   </div>
-                  <div className="text-orange-100 font-medium">Hình ảnh</div>
+                  <div className="text-orange-100 font-medium text-xs sm:text-sm">Hình ảnh</div>
                 </div>
               </div>
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {/* Left Column - Main Info */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="lg:col-span-2 space-y-4 sm:space-y-6 md:space-y-8">
                 {/* Business Introduction */}
                 <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <Info className="w-6 h-6 text-white" />
+                  <CardContent className="p-4 sm:p-6 md:p-8">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <Info className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                      <div className="flex-1">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900">
                           Giới thiệu
                         </h3>
-                        <p className="text-slate-600">
+                        <p className="text-slate-600 text-sm sm:text-base">
                           Thông tin tổng quan về business
                         </p>
                       </div>
-                      <div className="absolute top-10 right-8 flex items-center gap-4">
+                      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-10 md:right-8 flex items-center gap-2 sm:gap-4">
                         <Button
                           variant="outline"
-                          size="lg"
-                          className={`backdrop-blur-sm ${
+                          size="sm"
+                          className={`backdrop-blur-sm text-xs sm:text-sm ${
                             editMode 
                               ? "bg-red-50 border-red-200 text-red-700 hover:bg-red-100" 
                               : "bg-white/90 border-blue-200 text-slate-800 hover:bg-gray-50"
@@ -1144,22 +1160,24 @@ const BusinessOverview = () => {
                         >
                           {editMode ? (
                             <>
-                              <AlertCircle className="w-5 h-5 mr-2" />
-                              Thoát chỉnh sửa
+                              <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                              <span className="hidden sm:inline">Thoát chỉnh sửa</span>
+                              <span className="sm:hidden">Thoát</span>
                             </>
                           ) : (
                             <>
-                              <Edit3 className="w-5 h-5 mr-2" />
-                              Chỉnh sửa
+                              <Edit3 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                              <span className="hidden sm:inline">Chỉnh sửa</span>
+                              <span className="sm:hidden">Sửa</span>
                             </>
                           )}
                         </Button>
                       </div>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {editMode ? (
                         <form onSubmit={handleProfileSubmit}>
-                          <div className="space-y-4">
+                          <div className="space-y-3 sm:space-y-4">
                             <div>
                               <label className="block text-sm font-semibold text-gray-700 mb-2">
                                 Tên doanh nghiệp
@@ -1168,7 +1186,7 @@ const BusinessOverview = () => {
                                 name="name"
                                 value={editProfile?.name || ""}
                                 onChange={handleProfileChange}
-                                className="w-full border-2 border-blue-200 rounded-xl px-4 py-3 text-base focus:ring-2 focus:ring-blue-400"
+                                className="w-full border-2 border-blue-200 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-400"
                                 placeholder="Nhập tên doanh nghiệp..."
                                 required
                               />
@@ -1181,7 +1199,7 @@ const BusinessOverview = () => {
                                 name="introduction"
                                 value={editProfile?.introduction || ""}
                                 onChange={handleProfileChange}
-                                className="w-full border-2 border-blue-200 rounded-xl px-4 py-3 text-base focus:ring-2 focus:ring-blue-400 resize-none"
+                                className="w-full border-2 border-blue-200 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-400 resize-none"
                                 rows={3}
                                 placeholder="Nhập giới thiệu ngắn gọn..."
                                 required
@@ -1195,27 +1213,27 @@ const BusinessOverview = () => {
                                 name="description"
                                 value={editProfile?.description || ""}
                                 onChange={handleProfileChange}
-                                className="w-full border-2 border-blue-200 rounded-xl px-4 py-3 text-base focus:ring-2 focus:ring-blue-400 resize-none"
+                                className="w-full border-2 border-blue-200 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:ring-2 focus:ring-blue-400 resize-none"
                                 rows={4}
                                 placeholder="Nhập mô tả chi tiết..."
                                 required
                               />
                             </div>
 
-                            <div className="flex justify-end gap-4">
+                            <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
                               <Button
                                 type="button"
                                 variant="outline"
-                                size="lg"
+                                size="sm"
                                 onClick={handleEditToggle}
-                                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-xl font-semibold"
+                                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-4 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base"
                               >
                                 Hủy
                               </Button>
                               <Button
                                 type="submit"
-                                size="lg"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                                size="sm"
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
                                 disabled={editLoading}
                               >
                                 {editLoading ? "Đang lưu..." : "Lưu thay đổi"}
@@ -1225,19 +1243,19 @@ const BusinessOverview = () => {
                         </form>
                       ) : (
                         <>
-                          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
-                            <h4 className="text-lg font-semibold text-slate-800 mb-3">
+                          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-blue-100">
+                            <h4 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 sm:mb-3">
                               Tổng quan
                             </h4>
-                            <p className="text-base text-slate-700 leading-relaxed">
+                            <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                               {business.introduction}
                             </p>
                           </div>
-                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100">
-                            <h4 className="text-lg font-semibold text-slate-800 mb-3">
+                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-100">
+                            <h4 className="text-base sm:text-lg font-semibold text-slate-800 mb-2 sm:mb-3">
                               Chi tiết
                             </h4>
-                            <p className="text-slate-600 leading-relaxed">
+                            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                               {business.description}
                             </p>
                           </div>
@@ -1249,16 +1267,16 @@ const BusinessOverview = () => {
                 {/* Highlights Section */}
                 {business.hightlight && business.hightlight.length > 0 && (
                   <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                    <CardContent className="p-6 md:p-8">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
-                          <Award className="w-6 h-6 text-white" />
+                    <CardContent className="p-4 sm:p-6 md:p-8">
+                      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                          <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900">
                             Điểm nổi bật
                           </h3>
-                          <p className="text-slate-600">
+                          <p className="text-slate-600 text-sm sm:text-base">
                             Những ưu điểm vượt trội
                           </p>
                         </div>
@@ -1266,14 +1284,14 @@ const BusinessOverview = () => {
                       {editMode ? (
                         <div className="space-y-3">
                           {editProfile?.highlight?.map((hl, idx) => (
-                            <div key={idx} className="flex gap-3">
+                            <div key={idx} className="flex gap-2 sm:gap-3">
                               <input
                                 type="text"
                                 value={hl}
                                 onChange={(e) =>
                                   handleHighlightChange(idx, e.target.value)
                                 }
-                                className="flex-1 border-2 border-green-200 rounded-xl px-4 py-3 text-base focus:ring-2 focus:ring-green-400"
+                                className="flex-1 border-2 border-green-200 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:ring-2 focus:ring-green-400"
                                 placeholder="Nhập điểm nổi bật..."
                               />
                               <Button
@@ -1291,25 +1309,25 @@ const BusinessOverview = () => {
                             type="button"
                             variant="outline"
                             onClick={handleAddHighlight}
-                            className="border-green-200 text-green-600 hover:bg-green-50"
+                            className="border-green-200 text-green-600 hover:bg-green-50 text-sm"
                           >
                             <Plus className="w-4 h-4 mr-2" />
                             Thêm điểm nổi bật
                           </Button>
                         </div>
                       ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                           {business.hightlight && business.hightlight.length > 0 ? (
                             business.hightlight.map((highlight, index) => (
                               <div
                                 key={index}
-                                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                                className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 hover:shadow-xl transition-all duration-500 hover:scale-105"
                               >
-                                <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full -translate-y-6 translate-x-6"></div>
-                                <div className="relative p-4 md:p-6">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-3 h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mt-2 flex-shrink-0 shadow-md"></div>
-                                    <span className="text-green-800 font-semibold leading-relaxed">
+                                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-full -translate-y-4 translate-x-4 sm:-translate-y-6 sm:translate-x-6"></div>
+                                <div className="relative p-3 sm:p-4 md:p-6">
+                                  <div className="flex items-start gap-2 sm:gap-3">
+                                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0 shadow-md"></div>
+                                    <span className="text-green-800 font-semibold leading-relaxed text-sm sm:text-base">
                                       {highlight}
                                     </span>
                                   </div>
@@ -1317,17 +1335,17 @@ const BusinessOverview = () => {
                               </div>
                             ))
                           ) : (
-                            <div className="col-span-2 flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-2 border-dashed border-green-200">
-                              <Award className="w-16 h-16 text-green-400 mb-4" />
-                              <h3 className="text-lg font-semibold text-green-800 mb-2">
+                            <div className="col-span-2 flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl border-2 border-dashed border-green-200">
+                              <Award className="w-12 h-12 sm:w-16 sm:h-16 text-green-400 mb-3 sm:mb-4" />
+                              <h3 className="text-base sm:text-lg font-semibold text-green-800 mb-2 text-center">
                                 Chưa có điểm nổi bật
                               </h3>
-                              <p className="text-green-600 text-center mb-4">
+                              <p className="text-green-600 text-center mb-3 sm:mb-4 text-sm sm:text-base">
                                 Thêm những điểm nổi bật để khách hàng hiểu rõ hơn về ưu điểm của bạn
                               </p>
                               <Button
                                 onClick={handleAddHighlight}
-                                className="bg-green-600 hover:bg-green-700 text-white"
+                                className="bg-green-600 hover:bg-green-700 text-white text-sm"
                               >
                                 <Plus className="w-4 h-4 mr-2" />
                                 Thêm điểm nổi bật đầu tiên
@@ -1340,42 +1358,42 @@ const BusinessOverview = () => {
                   </Card>
                 )}
                 {/* Services Section */}
-                <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm mb-8">
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
-                        <Users className="w-6 h-6 text-emerald-500" /> Dịch vụ
+                <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm mb-6 sm:mb-8">
+                  <CardContent className="p-4 sm:p-6 md:p-8">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                        <Users className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-500" /> Dịch vụ
                       </h3>
                       <Button
                         onClick={openCreateService}
                         size="sm"
-                        className="bg-emerald-600 text-white"
+                        className="bg-emerald-600 text-white text-sm"
                       >
                         + Thêm dịch vụ
                       </Button>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                       {services.length > 0 ? (
                         services.map((service) => (
                           <div
                             key={service.id}
-                            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 p-4"
+                            className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 p-3 sm:p-4"
                           >
                             <div className="flex items-center justify-between mb-2">
-                              <h4 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1">
+                              <h4 className="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1 text-sm sm:text-base">
                                 {service.name}
                               </h4>
                               {service.discount > 0 && (
-                                <Badge className="bg-red-100 text-red-800 border-red-200">
+                                <Badge className="bg-red-100 text-red-800 border-red-200 text-xs">
                                   -{service.discount}%
                                 </Badge>
                               )}
                             </div>
-                            <p className="text-sm text-slate-600 line-clamp-2 mb-2">
+                            <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 mb-2">
                               {service.description}
                             </p>
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="text-lg font-bold text-emerald-600">
+                            <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                              <span className="text-base sm:text-lg font-bold text-emerald-600">
                                 {formatPrice(service.price)}
                               </span>
                               <span className="text-xs text-slate-500">
@@ -1387,29 +1405,30 @@ const BusinessOverview = () => {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => openEditService(service)}
+                                className="text-xs"
                               >
-                                <Edit3 className="w-4 h-4 mr-1" /> Sửa
+                                <Edit3 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Sửa
                               </Button>
                               <Button
                                 size="sm"
                                 variant="outline"
                                 onClick={() => handleDeleteService(service.id)}
+                                className="text-xs"
                               >
-                                <Trash2 className="w-4 h-4 mr-1" /> Xóa
+                                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Xóa
                               </Button>
                             </div>
                           </div>
                         ))
                       ) : (
-                        <div className="col-span-2 flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl border-2 border-dashed border-emerald-200">
-                          <Users className="w-16 h-16 text-emerald-400 mb-4" />
-                          <h3 className="text-lg font-semibold text-emerald-800 mb-2">
+                        <div className="col-span-2 flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl sm:rounded-2xl border-2 border-dashed border-emerald-200">
+                          <Users className="w-12 h-12 sm:w-16 sm:h-16 text-emerald-400 mb-3 sm:mb-4" />
+                          <h3 className="text-base sm:text-lg font-semibold text-emerald-800 mb-2 text-center">
                             Chưa có dịch vụ nào
                           </h3>
-                          <p className="text-emerald-600 text-center mb-4">
+                          <p className="text-emerald-600 text-center mb-3 sm:mb-4 text-sm sm:text-base">
                             Hãy thêm dịch vụ đầu tiên để khách hàng biết đến những gì bạn cung cấp
                           </p>
-                         
                         </div>
                       )}
                     </div>
@@ -1418,42 +1437,42 @@ const BusinessOverview = () => {
 
                 {/* Section: Sự kiện (Events) */}
                 {events && (
-                  <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm mb-8">
-                    <CardContent className="p-6 md:p-8">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
-                          <Calendar className="w-6 h-6 text-purple-500" /> Sự
+                  <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm mb-6 sm:mb-8">
+                    <CardContent className="p-4 sm:p-6 md:p-8">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 flex items-center gap-2">
+                          <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" /> Sự
                           kiện nổi bật
                         </h3>
                         <Button
                           onClick={openCreateEvent}
                           size="sm"
-                          className="bg-purple-600 text-white"
+                          className="bg-purple-600 text-white text-sm"
                         >
                           + Thêm sự kiện
                         </Button>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                         {events && events.length > 0 ? (
                           events.map((event) => (
                             <div
                               key={event.id}
-                              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-purple-50 border border-purple-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 p-4 flex flex-col md:flex-row gap-4"
+                              className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-white to-purple-50 border border-purple-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 p-3 sm:p-4 flex flex-col md:flex-row gap-3 sm:gap-4"
                             >
                               <img
                                 src={event.image || images.noImage}
                                 alt={event.name}
-                                className="w-full md:w-32 h-32 object-cover rounded-xl border-2 border-purple-200 flex-shrink-0"
+                                className="w-full md:w-32 h-24 sm:h-32 object-cover rounded-lg sm:rounded-xl border-2 border-purple-200 flex-shrink-0"
                               />
                               <div className="flex-1 flex flex-col justify-between">
                                 <div>
-                                  <h4 className="font-bold text-slate-900 group-hover:text-purple-600 transition-colors text-lg mb-1">
+                                  <h4 className="font-bold text-slate-900 group-hover:text-purple-600 transition-colors text-base sm:text-lg mb-1">
                                     {event.name}
                                   </h4>
                                   <p className="text-xs text-slate-500 mb-2">
                                     {event.startDate} - {event.endDate}
                                   </p>
-                                  <p className="text-sm text-slate-600 line-clamp-3">
+                                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3">
                                     {event.description}
                                   </p>
                                 </div>
@@ -1462,30 +1481,31 @@ const BusinessOverview = () => {
                                     size="sm"
                                     variant="outline"
                                     onClick={() => openEditEvent(event)}
+                                    className="text-xs"
                                   >
-                                    <Edit3 className="w-4 h-4 mr-1" /> Sửa
+                                    <Edit3 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Sửa
                                   </Button>
                                   <Button
                                     size="sm"
                                     variant="outline"
                                     onClick={() => handleDeleteEvent(event.id)}
+                                    className="text-xs"
                                   >
-                                    <Trash2 className="w-4 h-4 mr-1" /> Xóa
+                                    <Trash2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Xóa
                                   </Button>
                                 </div>
                               </div>
                             </div>
                           ))
                         ) : (
-                          <div className="col-span-2 flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl border-2 border-dashed border-purple-200">
-                            <Calendar className="w-16 h-16 text-purple-400 mb-4" />
-                            <h3 className="text-lg font-semibold text-purple-800 mb-2">
+                          <div className="col-span-2 flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl border-2 border-dashed border-purple-200">
+                            <Calendar className="w-12 h-12 sm:w-16 sm:h-16 text-purple-400 mb-3 sm:mb-4" />
+                            <h3 className="text-base sm:text-lg font-semibold text-purple-800 mb-2 text-center">
                               Chưa có sự kiện nào
                             </h3>
-                            <p className="text-purple-600 text-center mb-4">
+                            <p className="text-purple-600 text-center mb-3 sm:mb-4 text-sm sm:text-base">
                               Tạo sự kiện để thu hút khách hàng và tăng doanh thu
                             </p>
-                            
                           </div>
                         )}
                       </div>
@@ -1494,54 +1514,54 @@ const BusinessOverview = () => {
                 )}
                 {/* Reviews Section */}
                 <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent className="p-6 md:p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-                          <MessageSquare className="w-6 h-6 text-white" />
+                  <CardContent className="p-4 sm:p-6 md:p-8">
+                    <div className="flex items-center justify-between mb-4 sm:mb-6">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                          <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-slate-900">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900">
                             Đánh giá
                           </h3>
-                          <p className="text-slate-600">
+                          <p className="text-slate-600 text-sm sm:text-base">
                             {feedbacks.length} đánh giá từ khách hàng
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {feedbacks.length > 0 ? (
                         feedbacks.slice(0, 2).map((feedback) => (
                           <div
                             key={feedback.id}
-                            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-amber-50 border border-amber-200 hover:shadow-xl transition-all duration-500"
+                            className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br from-white to-amber-50 border border-amber-200 hover:shadow-xl transition-all duration-500"
                           >
-                            <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full -translate-y-4 translate-x-4"></div>
-                            <div className="relative p-4 md:p-6">
-                              <div className="flex items-start gap-4">
+                            <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-full -translate-y-3 translate-x-3 sm:-translate-y-4 sm:translate-x-4"></div>
+                            <div className="relative p-3 sm:p-4 md:p-6">
+                              <div className="flex items-start gap-3 sm:gap-4">
                                 <div className="relative">
                                   <img
                                     src={
                                       feedback.userAvatar || images.noImage
                                     }
                                     alt={feedback.userName}
-                                    className="w-12 h-12 md:w-16 md:h-16 rounded-2xl object-cover border-2 border-white shadow-lg"
+                                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-xl sm:rounded-2xl object-cover border-2 border-white shadow-lg"
                                   />
-                                  <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center">
-                                    <CheckCircle className="w-3 h-3 text-white" />
+                                  <div className="absolute -bottom-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center">
+                                    <CheckCircle className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                                   </div>
                                 </div>
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-2">
-                                    <h4 className="font-bold text-slate-900">
+                                    <h4 className="font-bold text-slate-900 text-sm sm:text-base">
                                       {feedback.userName}
                                     </h4>
                                     <div className="flex items-center gap-1">
                                       {[...Array(5)].map((_, i) => (
                                         <Star
                                           key={i}
-                                          className={`w-4 h-4 ${
+                                          className={`w-3 h-3 sm:w-4 sm:h-4 ${
                                             i < feedback.rating
                                               ? "fill-yellow-400 text-yellow-400"
                                               : "text-gray-300"
@@ -1550,22 +1570,22 @@ const BusinessOverview = () => {
                                       ))}
                                     </div>
                                   </div>
-                                  <h5 className="font-semibold text-slate-800 mb-2">
+                                  <h5 className="font-semibold text-slate-800 mb-2 text-sm sm:text-base">
                                     {feedback.title}
                                   </h5>
-                                  <p className="text-slate-600 leading-relaxed text-sm">
+                                  <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
                                     {feedback.content}
                                   </p>
                                   {/* Hiển thị hình ảnh feedback nếu có */}
                                   {feedback.images &&
                                     feedback.images.length > 0 && (
-                                      <div className="flex gap-3 mt-2">
+                                      <div className="flex gap-2 sm:gap-3 mt-2">
                                         {feedback.images
                                           .slice(0, 3)
                                           .map((image, index) => (
                                             <div
                                               key={index}
-                                              className="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-md"
+                                              className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden border-2 border-white shadow-md"
                                             >
                                               <img
                                                 src={image}
@@ -1575,8 +1595,8 @@ const BusinessOverview = () => {
                                             </div>
                                           ))}
                                         {feedback.images.length > 3 && (
-                                          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-white shadow-md flex items-center justify-center">
-                                            <span className="text-sm font-bold text-amber-800">
+                                          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-white shadow-md flex items-center justify-center">
+                                            <span className="text-xs sm:text-sm font-bold text-amber-800">
                                               +{feedback.images.length - 3}
                                             </span>
                                           </div>
@@ -1589,17 +1609,17 @@ const BusinessOverview = () => {
                           </div>
                         ))
                       ) : (
-                        <div className="flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl border-2 border-dashed border-amber-200">
-                          <MessageSquare className="w-16 h-16 text-amber-400 mb-4" />
-                          <h3 className="text-lg font-semibold text-amber-800 mb-2">
+                        <div className="flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl sm:rounded-2xl border-2 border-dashed border-amber-200">
+                          <MessageSquare className="w-12 h-12 sm:w-16 sm:h-16 text-amber-400 mb-3 sm:mb-4" />
+                          <h3 className="text-base sm:text-lg font-semibold text-amber-800 mb-2 text-center">
                             Chưa có đánh giá nào
                           </h3>
-                          <p className="text-amber-600 text-center mb-4">
+                          <p className="text-amber-600 text-center mb-3 sm:mb-4 text-sm sm:text-base">
                             Khách hàng sẽ đánh giá và chia sẻ trải nghiệm của họ tại đây
                           </p>
                           <div className="flex items-center gap-2 text-amber-600">
-                            <Star className="w-5 h-5" />
-                            <span className="text-sm">Chưa có đánh giá</span>
+                            <Star className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span className="text-xs sm:text-sm">Chưa có đánh giá</span>
                           </div>
                         </div>
                       )}
@@ -1608,37 +1628,37 @@ const BusinessOverview = () => {
                 </Card>
               </div>
               {/* Right Column - Sidebar Info */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Business Information */}
                 <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <Info className="w-5 h-5 text-white" />
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <Info className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-slate-900">
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900">
                           Thông tin
                         </h3>
-                        <p className="text-slate-600">Chi tiết business</p>
+                        <p className="text-slate-600 text-sm">Chi tiết business</p>
                       </div>
                     </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-200">
-                        <Clock className="w-5 h-5 text-orange-600" />
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg sm:rounded-xl border border-orange-200">
+                        <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                         <div className="flex-1">
-                          <p className="text-sm text-orange-600 font-medium">
+                          <p className="text-xs sm:text-sm text-orange-600 font-medium">
                             Giờ hoạt động
                           </p>
-                          <p className="text-orange-900 font-bold">
+                          <p className="text-orange-900 font-bold text-sm sm:text-base">
                             {editMode ? (
-                              <div className="flex gap-2 mt-1">
+                              <div className="flex gap-1 sm:gap-2 mt-1">
                                 <input
                                   type="time"
                                   name="openTime"
                                   value={editProfile?.openTime || ""}
                                   onChange={handleProfileChange}
-                                  className="border border-orange-300 rounded-lg px-2 py-1 text-sm"
+                                  className="border border-orange-300 rounded-lg px-1 sm:px-2 py-1 text-xs sm:text-sm"
                                 />
                                 <span className="text-orange-600">-</span>
                                 <input
@@ -1646,7 +1666,7 @@ const BusinessOverview = () => {
                                   name="closeTime"
                                   value={editProfile?.closeTime || ""}
                                   onChange={handleProfileChange}
-                                  className="border border-orange-300 rounded-lg px-2 py-1 text-sm"
+                                  className="border border-orange-300 rounded-lg px-1 sm:px-2 py-1 text-xs sm:text-sm"
                                 />
                               </div>
                             ) : (
@@ -1655,10 +1675,10 @@ const BusinessOverview = () => {
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
-                        <Globe className="w-5 h-5 text-blue-600" />
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl border border-blue-200">
+                        <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                         <div className="flex-1">
-                          <p className="text-sm text-blue-600 font-medium">
+                          <p className="text-xs sm:text-sm text-blue-600 font-medium">
                             Website
                           </p>
                           {editMode ? (
@@ -1667,7 +1687,7 @@ const BusinessOverview = () => {
                               name="website"
                               value={editProfile?.website || ""}
                               onChange={handleProfileChange}
-                              className="w-full border border-blue-300 rounded-lg px-2 py-1 text-sm mt-1"
+                              className="w-full border border-blue-300 rounded-lg px-1 sm:px-2 py-1 text-xs sm:text-sm mt-1"
                               placeholder="Nhập website..."
                             />
                           ) : (
@@ -1675,19 +1695,19 @@ const BusinessOverview = () => {
                               href={business.website}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-900 font-semibold hover:text-blue-700 transition-colors"
+                              className="text-blue-900 font-semibold hover:text-blue-700 transition-colors text-sm sm:text-base break-all"
                             >
                               {business.website}
                             </a>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border border-orange-200">
-                        <div className="w-5 h-5 bg-orange-600 rounded-full flex items-center justify-center">
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg sm:rounded-xl border border-orange-200">
+                        <div className="w-4 h-4 sm:w-5 sm:h-5 bg-orange-600 rounded-full flex items-center justify-center">
                           <span className="text-white text-xs font-bold">₫</span>
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm text-orange-600 font-medium">
+                          <p className="text-xs sm:text-sm text-orange-600 font-medium">
                             Giá trung bình
                           </p>
                           {editMode ? (
@@ -1695,40 +1715,40 @@ const BusinessOverview = () => {
                               name="cost"
                               value={formatPriceInput(editProfile?.cost || 0)}
                               onChange={handleProfileChange}
-                              className="w-full border border-orange-300 rounded-lg px-2 py-1 text-sm mt-1"
+                              className="w-full border border-orange-300 rounded-lg px-1 sm:px-2 py-1 text-xs sm:text-sm mt-1"
                               placeholder="0"
                             />
                           ) : (
-                            <p className="text-orange-900 font-bold">
+                            <p className="text-orange-900 font-bold text-sm sm:text-base">
                               {formatPrice(business.cost)}
                             </p>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200">
-                        <MapPin className="w-5 h-5 text-purple-600" />
+                      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg sm:rounded-xl border border-purple-200">
+                        <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
                         <div className="flex-1">
-                          <p className="text-sm text-purple-600 font-medium">
+                          <p className="text-xs sm:text-sm text-purple-600 font-medium">
                             Địa chỉ
                           </p>
-                          <p className="text-purple-900 font-semibold">
+                          <p className="text-purple-900 font-semibold text-sm sm:text-base">
                             {business.location}
                           </p>
                         </div>
                       </div>
                       {business.types?.[0] && (
-                        <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-indigo-50 to-cyan-50 rounded-xl border border-indigo-200">
-                          <div className="w-5 h-5 bg-indigo-600 rounded-full flex items-center justify-center">
+                        <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gradient-to-r from-indigo-50 to-cyan-50 rounded-lg sm:rounded-xl border border-indigo-200">
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 bg-indigo-600 rounded-full flex items-center justify-center">
                             {React.createElement(
                               getBusinessTypeIcon(business.types[0].name),
-                              { className: "w-3 h-3 text-white" }
+                              { className: "w-2 h-2 sm:w-3 sm:h-3 text-white" }
                             )}
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-indigo-600 font-medium">
+                            <p className="text-xs sm:text-sm text-indigo-600 font-medium">
                               Loại hình
                             </p>
-                            <p className="text-indigo-900 font-semibold">
+                            <p className="text-indigo-900 font-semibold text-sm sm:text-base">
                               {business.types[0].name}
                             </p>
                           </div>
@@ -1739,17 +1759,17 @@ const BusinessOverview = () => {
                 </Card>
                 {/* Image Management */}
                 <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
-                          <Camera className="w-5 h-5 text-white" />
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                          <Camera className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-slate-900">
+                          <h3 className="text-base sm:text-lg font-bold text-slate-900">
                             Hình ảnh
                           </h3>
-                          <p className="text-slate-600">
+                          <p className="text-slate-600 text-sm">
                             {business.images?.length || 0} hình ảnh
                           </p>
                         </div>
@@ -1757,7 +1777,7 @@ const BusinessOverview = () => {
                       <div className="flex gap-2">
                         <label
                           htmlFor="images-upload"
-                          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+                          className="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer text-sm"
                         >
                           <Plus className="w-4 h-4 mr-2 inline" />
                           Thêm ảnh
@@ -1775,9 +1795,9 @@ const BusinessOverview = () => {
 
                     {/* Preview images to add */}
                     {imagesToAdd.length > 0 && (
-                      <div className="mb-4 p-4 bg-green-50 rounded-xl border border-green-200">
-                        <h4 className="font-semibold text-green-800 mb-3">Ảnh sẽ thêm:</h4>
-                        <div className="grid grid-cols-3 gap-3 mb-3">
+                      <div className="mb-4 p-3 sm:p-4 bg-green-50 rounded-lg sm:rounded-xl border border-green-200">
+                        <h4 className="font-semibold text-green-800 mb-3 text-sm sm:text-base">Ảnh sẽ thêm:</h4>
+                        <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-3">
                           {imagesToAdd.map((file, index) => (
                             <div key={index} className="relative aspect-square overflow-hidden rounded-lg">
                               <img
@@ -1792,7 +1812,7 @@ const BusinessOverview = () => {
                           <Button
                             type="submit"
                             size="sm"
-                            className="bg-green-600 hover:bg-green-700 text-white"
+                            className="bg-green-600 hover:bg-green-700 text-white text-sm"
                             disabled={editLoading}
                           >
                             {editLoading ? "Đang thêm..." : "Xác nhận thêm"}
@@ -1802,7 +1822,7 @@ const BusinessOverview = () => {
                             size="sm"
                             variant="outline"
                             onClick={() => setImagesToAdd([])}
-                            className="border-green-200 text-green-600 hover:bg-green-50"
+                            className="border-green-200 text-green-600 hover:bg-green-50 text-sm"
                           >
                             Hủy
                           </Button>
@@ -1810,12 +1830,12 @@ const BusinessOverview = () => {
                       </div>
                     )}
 
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       {business.images && business.images.length > 0 ? (
                         business.images.map((image, index) => (
                           <div
                             key={index}
-                            className="relative group aspect-square overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300"
+                            className="relative group aspect-square overflow-hidden rounded-lg sm:rounded-xl hover:shadow-lg transition-all duration-300"
                           >
                             <img
                               src={image || images.noImage}
@@ -1825,12 +1845,12 @@ const BusinessOverview = () => {
                           </div>
                         ))
                       ) : (
-                        <div className="col-span-2 flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border-2 border-dashed border-green-200">
-                          <Camera className="w-16 h-16 text-green-400 mb-4" />
-                          <h3 className="text-lg font-semibold text-green-800 mb-2">
+                        <div className="col-span-2 flex flex-col items-center justify-center py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl border-2 border-dashed border-green-200">
+                          <Camera className="w-12 h-12 sm:w-16 sm:h-16 text-green-400 mb-3 sm:mb-4" />
+                          <h3 className="text-base sm:text-lg font-semibold text-green-800 mb-2 text-center">
                             Chưa có hình ảnh nào
                           </h3>
-                          <p className="text-green-600 text-center mb-4">
+                          <p className="text-green-600 text-center mb-3 sm:mb-4 text-sm sm:text-base">
                             Thêm hình ảnh để khách hàng có thể thấy rõ hơn về business của bạn
                           </p>
                         </div>

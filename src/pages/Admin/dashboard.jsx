@@ -215,22 +215,22 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="space-y-8 p-6 bg-slate-50/50 min-h-screen">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8 p-3 sm:p-4 lg:p-6 bg-slate-50/50 min-h-screen">
       {/* Header Actions */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-slate-600">Tổng quan về hoạt động hệ thống</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Dashboard</h1>
+          <p className="text-sm sm:text-base text-slate-600">Tổng quan về hoạt động hệ thống</p>
         </div>
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
-            className="border-slate-200 hover:bg-slate-50"
+            className="border-slate-200 hover:bg-slate-50 text-sm"
           >
             <Download className="w-4 h-4 mr-2" />
             Xuất báo cáo
           </Button>
-          <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-lg shadow-emerald-500/25">
+          <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 shadow-lg shadow-emerald-500/25 text-sm">
             <Activity className="w-4 h-4 mr-2" />
             Tạo báo cáo
           </Button>
@@ -238,7 +238,7 @@ const DashboardPage = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -248,17 +248,17 @@ const DashboardPage = () => {
                 stat.color
               )} hover:shadow-xl transition-all duration-300 hover:scale-105`}
             >
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center ${getColorClasses(
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center ${getColorClasses(
                       stat.color
                     )} shadow-lg`}
                   >
-                    <Icon className="w-6 h-6" />
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
                   <div
-                    className={`flex items-center space-x-1 text-sm font-semibold ${
+                    className={`flex items-center space-x-1 text-xs sm:text-sm font-semibold ${
                       getTrendColor(stat.trend)
                     }`}
                   >
@@ -267,10 +267,10 @@ const DashboardPage = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-slate-900 mb-1">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">
                     <CountUp end={stat.value} duration={1.2} separator="," />
                   </h3>
-                  <p className="text-slate-600 text-sm font-medium mb-1">
+                  <p className="text-slate-600 text-xs sm:text-sm font-medium mb-1">
                     {stat.title}
                   </p>
                   <p className="text-xs text-slate-500">{stat.description}</p>
@@ -281,74 +281,88 @@ const DashboardPage = () => {
         })}
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
         {/* Revenue Chart */}
-        <Card className="lg:col-span-2 border-0 shadow-lg">
-          <CardHeader>
-            <CardTitle>Biểu đồ doanh thu</CardTitle>
-            <CardDescription>
-              {filterDays === 7 && "7 ngày gần nhất"}
-              {filterDays === 30 && "30 ngày gần nhất"}
-              {filterDays === 90 && "90 ngày gần nhất"}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center space-x-2 mb-4">
-              <Button variant={filterDays === 7 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(7)}>
-                7 ngày
-              </Button>
-              <Button variant={filterDays === 30 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(30)}>
-                30 ngày
-              </Button>
-              <Button variant={filterDays === 90 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(90)}>
-                90 ngày
-              </Button>
+        <Card className="xl:col-span-2 border-0 shadow-lg">
+          <CardHeader className="pb-3 sm:pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <CardTitle className="text-lg sm:text-xl">Biểu đồ doanh thu</CardTitle>
+                <CardDescription className="text-sm">
+                  {filterDays === 7 && "7 ngày gần nhất"}
+                  {filterDays === 30 && "30 ngày gần nhất"}
+                  {filterDays === 90 && "90 ngày gần nhất"}
+                </CardDescription>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <Button variant={filterDays === 7 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(7)} className="text-xs">
+                  7 ngày
+                </Button>
+                <Button variant={filterDays === 30 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(30)} className="text-xs">
+                  30 ngày
+                </Button>
+                <Button variant={filterDays === 90 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(90)} className="text-xs">
+                  90 ngày
+                </Button>
+              </div>
             </div>
-            <ChartContainer config={chartConfig} className="w-full">
-              <LineChart
-                data={getRevenueChartData(filterDays)}
-                margin={{ left: 12, right: 12, top: 20, bottom: 0 }}
-                width={600}
-                height={300}
-              >
-                <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="date"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                  tickFormatter={formatChartDate}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent hideLabel />} />
-                <Line
-                  dataKey="amount"
-                  type="monotone"
-                  stroke="var(--chart-1)"
-                  strokeWidth={2}
-                  dot={({ cx, cy, payload }) => {
-                    const r = 18;
-                    return (
-                      <GitCommitVertical
-                        key={payload.date}
-                        x={cx - r / 2}
-                        y={cy - r / 2}
-                        width={r}
-                        height={r}
-                        fill="hsl(var(--background))"
-                        stroke="var(--chart-1)"
-                      />
-                    );
-                  }}
-                  activeDot={{ r: 8, fill: "#fff", stroke: "var(--chart-1)", strokeWidth: 3 }}
-                />
-              </LineChart>
-            </ChartContainer>
+          </CardHeader>
+          <CardContent className="p-4 sm:p-6">
+            <div className="w-full h-[250px] sm:h-[300px]">
+              <ChartContainer config={chartConfig} className="w-full h-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={getRevenueChartData(filterDays)}
+                    margin={{ left: 12, right: 12, top: 20, bottom: 20 }}
+                  >
+                    <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                    <XAxis
+                      dataKey="date"
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      tickFormatter={formatChartDate}
+                      fontSize={12}
+                    />
+                    <YAxis
+                      tickLine={false}
+                      axisLine={false}
+                      tickMargin={8}
+                      fontSize={12}
+                      tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
+                    />
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent hideLabel />} />
+                    <Line
+                      dataKey="amount"
+                      type="monotone"
+                      stroke="var(--chart-1)"
+                      strokeWidth={2}
+                      dot={({ cx, cy, payload }) => {
+                        const r = 6;
+                        return (
+                          <GitCommitVertical
+                            key={payload.date}
+                            x={cx - r / 2}
+                            y={cy - r / 2}
+                            width={r}
+                            height={r}
+                            fill="hsl(var(--background))"
+                            stroke="var(--chart-1)"
+                          />
+                        );
+                      }}
+                      activeDot={{ r: 6, fill: "#fff", stroke: "var(--chart-1)", strokeWidth: 2 }}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </div>
           </CardContent>
-          <CardFooter className="flex-col items-start gap-2 text-sm">
+          <CardFooter className="flex-col items-start gap-2 text-xs sm:text-sm">
             <div className="flex gap-2 leading-none font-medium">
-              Doanh thu tăng 5.2% tháng này <TrendingUp className="h-4 w-4" />
+              Doanh thu tăng 5.2% tháng này <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
             </div>
             <div className="text-muted-foreground leading-none">
               Tổng doanh thu {filterDays} ngày gần nhất
@@ -358,23 +372,23 @@ const DashboardPage = () => {
 
         {/* Top Destinations */}
         <Card className="border-0 shadow-lg">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold text-slate-900">
+          <CardHeader className="pb-3 sm:pb-4">
+            <CardTitle className="text-lg sm:text-xl font-bold text-slate-900">
               Doanh nghiệp hàng đầu
             </CardTitle>
-            <CardDescription className="text-slate-600">
+            <CardDescription className="text-sm text-slate-600">
               Các doanh nghiệp được yêu thích nhất
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {topDestinations.map((business) => (
                 <div
                   key={business.id}
-                  className="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
+                  className="flex items-center justify-between p-3 sm:p-4 bg-slate-50 rounded-lg sm:rounded-xl hover:bg-slate-100 transition-colors"
                 >
-                  <div className="flex items-center space-x-3">
-                    <div className="relative w-12 h-12 rounded-xl overflow-hidden">
+                  <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+                    <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl overflow-hidden flex-shrink-0">
                       {business.logo ? (
                         <img
                           src={business.logo}
@@ -383,23 +397,23 @@ const DashboardPage = () => {
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
-                          <Building2 className="w-6 h-6 text-white" />
+                          <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                         </div>
                       )}
                     </div>
-                    <div>
-                      <p className="font-semibold text-slate-900">
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-slate-900 text-sm sm:text-base truncate">
                         {business.name}
                       </p>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-xs sm:text-sm text-slate-500 truncate">
                         {business.location}
                       </p>
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right flex-shrink-0 ml-2">
                     <div className="flex items-center space-x-1 mb-1">
-                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                      <span className="text-sm font-semibold text-slate-900">
+                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500 fill-current" />
+                      <span className="text-xs sm:text-sm font-semibold text-slate-900">
                         {business.rating.toFixed(1)}
                       </span>
                     </div>
@@ -416,19 +430,19 @@ const DashboardPage = () => {
 
       {/* Recent Activities */}
       <Card className="border-0 shadow-lg">
-        <CardHeader className="pb-4">
-          <div className="flex items-center justify-between">
+        <CardHeader className="pb-3 sm:pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <CardTitle className="text-xl font-bold text-slate-900">
+              <CardTitle className="text-lg sm:text-xl font-bold text-slate-900">
                 Hoạt động gần đây
               </CardTitle>
-              <CardDescription className="text-slate-600">
+              <CardDescription className="text-sm text-slate-600">
                 Các thông báo và cập nhật mới nhất
               </CardDescription>
             </div>
             <Button
               variant="outline"
-              className="text-emerald-600 border-emerald-200 bg-emerald-50 hover:bg-emerald-100"
+              className="text-emerald-600 border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-sm"
             >
               Xem tất cả
             </Button>
@@ -436,28 +450,28 @@ const DashboardPage = () => {
         </CardHeader>
         <CardContent>
           {recentActivities.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {recentActivities.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-center space-x-4 p-4 hover:bg-slate-50 rounded-xl transition-all duration-200 group"
+                  className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 hover:bg-slate-50 rounded-lg sm:rounded-xl transition-all duration-200 group"
                 >
-                  <div className="relative">
+                  <div className="relative flex-shrink-0">
                     <img
                       src={activity.avatar}
                       alt={activity.userName}
-                      className="w-12 h-12 rounded-xl object-cover border-2 border-white shadow-lg"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl object-cover border-2 border-white shadow-lg"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2">
-                      <p className="text-slate-900 font-medium">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2 gap-1">
+                      <p className="text-slate-900 font-medium text-sm sm:text-base truncate">
                         {activity.userName}
                       </p>
-                      <span className="text-slate-500">•</span>
-                      <p className="text-slate-500 text-sm">{activity.time}</p>
+                      <span className="hidden sm:inline text-slate-500">•</span>
+                      <p className="text-slate-500 text-xs sm:text-sm">{activity.time}</p>
                     </div>
-                    <p className="text-slate-600 mt-1">
+                    <p className="text-slate-600 mt-1 text-sm">
                       <span className="font-medium">{activity.title}:</span>{" "}
                       {activity.content}
                     </p>
@@ -465,7 +479,7 @@ const DashboardPage = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
                   >
                     <Eye className="w-4 h-4" />
                   </Button>
@@ -473,14 +487,14 @@ const DashboardPage = () => {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                <Inbox className="w-8 h-8 text-slate-400" />
+            <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-100 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                <Inbox className="w-6 h-6 sm:w-8 sm:h-8 text-slate-400" />
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-1">
+              <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-1">
                 Chưa có thông báo nào
               </h3>
-              <p className="text-slate-500 max-w-sm">
+              <p className="text-slate-500 max-w-sm text-sm">
                 Các thông báo mới sẽ xuất hiện ở đây khi có hoạt động trong hệ thống
               </p>
             </div>
