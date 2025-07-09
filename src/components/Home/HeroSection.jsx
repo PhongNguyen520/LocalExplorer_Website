@@ -38,17 +38,18 @@ const HeroSection = () => (
             <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
               Tải ứng dụng di động của chúng tôi để khám phá các điểm đến, lập kế hoạch hành trình và đặt trải nghiệm.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-              <button className="flex items-center justify-center bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm sm:text-base">
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                <span className="hidden sm:inline">Download for iOS</span>
-                <span className="sm:hidden">iOS</span>
-              </button>
-              <button className="flex items-center justify-center bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-green-700 transition-colors text-sm sm:text-base">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-end items-center">
+              <a
+                href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-green-700 transition-colors text-sm sm:text-base"
+              >
                 <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span className="hidden sm:inline">Download for Android</span>
                 <span className="sm:hidden">Android</span>
-              </button>
+              </a>
+              
             </div>
           </div>
 

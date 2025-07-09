@@ -10,6 +10,7 @@ const images = {
     google: require("./google.png"),
     logo: require("./logo.png"),
     noImage: require("./noImage.png"),
+    qr: require("./qr.png"),
 };
 
 export default images;

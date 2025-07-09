@@ -22,29 +22,30 @@ const CallToActionSection = () => (
       </p>
 
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8">
-        <button className="flex items-center bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-gray-800 transition-colors min-w-[180px] sm:min-w-[200px] text-sm sm:text-base">
-          <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
-          <div className="text-left">
-            <div className="text-xs opacity-75">Download on the</div>
-            <div className="text-xs sm:text-sm font-bold">IOS Device</div>
-          </div>
-        </button>
-
-        <button className="flex items-center bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors min-w-[180px] sm:min-w-[200px] text-sm sm:text-base">
+        <a
+          href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-green-700 transition-colors min-w-[180px] sm:min-w-[200px] text-sm sm:text-base"
+        >
           <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3" />
           <div className="text-left">
             <div className="text-xs opacity-75">Get it on</div>
             <div className="text-xs sm:text-sm font-bold">Android Device</div>
           </div>
-        </button>
+        </a>
       </div>
 
       <div className="text-center">
         <p className="text-xs sm:text-sm opacity-75 mb-3 sm:mb-4">Hoặc quét mã QR bằng camera điện thoại của bạn</p>
         <div className="inline-block bg-white p-3 sm:p-4 rounded-xl shadow-lg border border-gray-200">
-          <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gray-200 rounded-lg flex items-center justify-center">
-            <span className="text-gray-500 text-xs">QR Code</span>
-          </div>
+          <a
+            href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={require('../../assets/images/qr.png')} alt="QR code" className="w-24 h-24 sm:w-32 sm:h-32 object-contain" />
+          </a>
         </div>
       </div>
     </div>

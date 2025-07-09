@@ -124,15 +124,7 @@ const Footer = () => (
           <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
             Khám phá những viên ngọc ẩn giấu của Việt Nam
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <button className="bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors text-sm sm:text-base">
-              Download for iOS
-            </button>
-            <button className="bg-green-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:bg-green-700 transition-colors text-sm sm:text-base">
-              Download for Android
-            </button>
-          </div>
+         
         </div>
       </div>
 
