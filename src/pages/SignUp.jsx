@@ -132,10 +132,15 @@ const SignUp = () => {
               <p className="text-blue-800 mb-3 sm:mb-4 text-sm sm:text-base">
                 Hãy tải ứng dụng di động của chúng tôi để khám phá một cách trọn vẹn nhất!
               </p>
-              <button className="inline-flex items-center px-3 sm:px-4 py-2 border border-blue-300 rounded-md text-xs sm:text-sm font-medium text-blue-700 bg-white hover:bg-blue-50 transition-colors">
-                Tải ứng dụng ngay
+              <a
+                href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 sm:px-4 py-2 border border-green-600 rounded-md text-xs sm:text-sm font-medium text-green-700 bg-white hover:bg-green-50 transition-colors"
+              >
+                Tải ứng dụng Android
                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
-              </button>
+              </a>
             </div>
           </div>
 
