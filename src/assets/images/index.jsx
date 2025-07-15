@@ -11,6 +11,14 @@ const images = {
     logo: require("./logo.png"),
     noImage: require("./noImage.png"),
     qr: require("./qr.png"),
+    amthuc: require("./amthuc.jpg"),
+    thiennhien: require("./thiennhien.jpg"),
+    vanhoa: require("./vanhoa.jpg"),
+    lehoi: require("./lehoi.jpg"),
+    nghiduong: require("./nghiduong.jpg"),
+    phieuluu: require("./phieuluu.jpg"),
+    checkin: require("./check-in.jpg"),
+    muasam: require("./mua-sam.jpg"),
 };
 
 export default images;

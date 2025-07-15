@@ -77,8 +77,6 @@ const EmailConfirmed = () => {
   const navigate = useNavigate();
   const config = statusConfig[status] || statusConfig.error;
 
-  // Debug: log status value
-  console.log('Status from URL:', status);
 
   return (
     <div className={`min-h-screen flex flex-col items-center justify-center bg-gradient-to-br ${config.bgGradient} px-3 sm:px-4 py-4 sm:py-8`}>

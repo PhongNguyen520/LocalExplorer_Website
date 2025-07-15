@@ -289,21 +289,21 @@ const DashboardPage = () => {
               <div>
                 <CardTitle className="text-lg sm:text-xl">Biểu đồ doanh thu</CardTitle>
                 <CardDescription className="text-sm">
-                  {filterDays === 7 && "7 ngày gần nhất"}
-                  {filterDays === 30 && "30 ngày gần nhất"}
-                  {filterDays === 90 && "90 ngày gần nhất"}
-                </CardDescription>
+              {filterDays === 7 && "7 ngày gần nhất"}
+              {filterDays === 30 && "30 ngày gần nhất"}
+              {filterDays === 90 && "90 ngày gần nhất"}
+            </CardDescription>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <Button variant={filterDays === 7 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(7)} className="text-xs">
-                  7 ngày
-                </Button>
+                7 ngày
+              </Button>
                 <Button variant={filterDays === 30 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(30)} className="text-xs">
-                  30 ngày
-                </Button>
+                30 ngày
+              </Button>
                 <Button variant={filterDays === 90 ? "default" : "outline"} size="sm" onClick={() => setFilterDays(90)} className="text-xs">
-                  90 ngày
-                </Button>
+                90 ngày
+              </Button>
               </div>
             </div>
           </CardHeader>
@@ -311,17 +311,17 @@ const DashboardPage = () => {
             <div className="w-full h-[250px] sm:h-[300px]">
               <ChartContainer config={chartConfig} className="w-full h-full">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                    data={getRevenueChartData(filterDays)}
+              <LineChart
+                data={getRevenueChartData(filterDays)}
                     margin={{ left: 12, right: 12, top: 20, bottom: 20 }}
-                  >
-                    <CartesianGrid vertical={false} strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="date"
-                      tickLine={false}
-                      axisLine={false}
-                      tickMargin={8}
-                      tickFormatter={formatChartDate}
+              >
+                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={formatChartDate}
                       fontSize={12}
                     />
                     <YAxis
@@ -330,34 +330,34 @@ const DashboardPage = () => {
                       tickMargin={8}
                       fontSize={12}
                       tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
-                    />
-                    <ChartTooltip
-                      cursor={false}
-                      content={<ChartTooltipContent hideLabel />} />
-                    <Line
-                      dataKey="amount"
-                      type="monotone"
-                      stroke="var(--chart-1)"
-                      strokeWidth={2}
-                      dot={({ cx, cy, payload }) => {
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />} />
+                <Line
+                  dataKey="amount"
+                  type="monotone"
+                  stroke="var(--chart-1)"
+                  strokeWidth={2}
+                  dot={({ cx, cy, payload }) => {
                         const r = 6;
-                        return (
-                          <GitCommitVertical
-                            key={payload.date}
-                            x={cx - r / 2}
-                            y={cy - r / 2}
-                            width={r}
-                            height={r}
-                            fill="hsl(var(--background))"
-                            stroke="var(--chart-1)"
-                          />
-                        );
-                      }}
+                    return (
+                      <GitCommitVertical
+                        key={payload.date}
+                        x={cx - r / 2}
+                        y={cy - r / 2}
+                        width={r}
+                        height={r}
+                        fill="hsl(var(--background))"
+                        stroke="var(--chart-1)"
+                      />
+                    );
+                  }}
                       activeDot={{ r: 6, fill: "#fff", stroke: "var(--chart-1)", strokeWidth: 2 }}
-                    />
-                  </LineChart>
+                />
+              </LineChart>
                 </ResponsiveContainer>
-              </ChartContainer>
+            </ChartContainer>
             </div>
           </CardContent>
           <CardFooter className="flex-col items-start gap-2 text-xs sm:text-sm">

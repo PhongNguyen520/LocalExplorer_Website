@@ -165,6 +165,17 @@ const EventsPage = () => {
     return colors[color] || colors.blue
   }
 
+  // Hàm xác định trạng thái động dựa vào ngày
+  const getEventStatus = (event) => {
+    const now = new Date();
+    const start = event.startDate ? parseVNDate(event.startDate) : null;
+    const end = event.endDate ? parseVNDate(event.endDate) : null;
+    if (end && end < now) return "completed";
+    if (start && start > now) return "upcoming";
+    if (start && end && start <= now && now <= end) return "active";
+    return event.status || "pending";
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -284,7 +295,7 @@ const EventsPage = () => {
                     </TableCell>
                     <TableCell>{event.startDate ? (parseVNDate(event.startDate)?.toLocaleString("vi-VN") || '-') : '-'}</TableCell>
                     <TableCell>{event.endDate ? (parseVNDate(event.endDate)?.toLocaleString("vi-VN") || '-') : '-'}</TableCell>
-                    <TableCell>{getStatusBadge(event.status)}</TableCell>
+                    <TableCell>{getStatusBadge(getEventStatus(event))}</TableCell>
                     <TableCell>{event.createdTime ? (new Date(event.createdTime).toLocaleDateString("vi-VN")) : '-'}</TableCell>
                   </TableRow>
                 ))}

@@ -30,7 +30,7 @@ import images from "../../assets/images"
 import CountUp from "react-countup"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "../../components/Admin/ui/sheet"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "../../components/Admin/ui/dialog"
-import { getAdminUsersApi } from "../../api/admin/users"
+import { getAdminUsersApi, banUserApi } from "../../api/admin/users"
 
 export default function UsersPage() {
   // Query/filter state
@@ -54,6 +54,10 @@ export default function UsersPage() {
   const [openFilterSheet, setOpenFilterSheet] = useState(false)
   const [openUserModal, setOpenUserModal] = useState(false)
   const [modalUser, setModalUser] = useState(null)
+  const [banLoading, setBanLoading] = useState(false);
+  const [banError, setBanError] = useState("");
+  const [banSuccess, setBanSuccess] = useState("");
+  const [openConfirmBan, setOpenConfirmBan] = useState(false);
 
   const statsData = stats;
 
@@ -117,6 +121,7 @@ export default function UsersPage() {
   };
 
   const getStatusColor = (status) => {
+    if (!status) return "bg-gray-100 text-gray-800";
     switch (status.toLowerCase()) {
       case "active":
         return "bg-green-100 text-green-800"
@@ -139,6 +144,25 @@ export default function UsersPage() {
   const handlePageSizeChange = (value) => setQuery(q => ({ ...q, PageSize: Number(value), PageIndex: 1 }));
 
   const totalPages = Math.ceil(totalItems / query.PageSize) || 1;
+
+  const handleBanUser = async () => {
+    if (!modalUser) return;
+    setBanLoading(true);
+    setBanError("");
+    setBanSuccess("");
+    try {
+      await banUserApi(modalUser.id);
+      setBanSuccess("Khoá tài khoản thành công.");
+      // Reload user list
+      setQuery(q => ({ ...q }));
+      // Optionally update modalUser status
+      setModalUser({ ...modalUser, status: "Inactive" });
+    } catch (err) {
+      setBanError(err?.response?.data?.message || "Có lỗi khi khoá tài khoản.");
+    } finally {
+      setBanLoading(false);
+    }
+  };
 
   return (
     <div className="space-y-4 sm:space-y-6 p-3 sm:p-4 lg:p-6">
@@ -618,56 +642,81 @@ export default function UsersPage() {
       </Sheet>
 
       <Dialog open={openUserModal} onOpenChange={setOpenUserModal}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle>Thông tin người dùng</DialogTitle>
-            <DialogDescription>
-              Xem chi tiết và thao tác với người dùng.
-            </DialogDescription>
-          </DialogHeader>
-          {modalUser && (
-            <div className="space-y-4 mt-4">
-              <div className="flex items-center gap-4">
-                <Avatar className="w-16 h-16">
-                  <AvatarImage
-                    src={modalUser.avatar || images.avatar}
-                    alt={modalUser.fullName}
-                  />
-                  <AvatarFallback>{modalUser.fullName}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <div className="font-bold text-lg">{modalUser.fullName}</div>
-                  <div className="text-slate-500 text-sm">
-                    {modalUser.email}
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <b>Điện thoại:</b> {modalUser.phoneNumber}
-                </div>
-                <div>
-                  <b>Giới tính:</b> {modalUser.gender === "Male" ? "Nam" : "Nữ"}
-                </div>
-                <div>
-                  <b>Ngày sinh:</b> {modalUser.dob}
-                </div>
-                <div>
-                  <b>Trạng thái:</b> {modalUser.status}
-                </div>
-                <div>
-                  <b>Lịch trình:</b> {modalUser.scheduleCount}
-                </div>
-              </div>
-              <div className="flex gap-2 mt-4">
-                <Button variant="destructive">Khoá tài khoản</Button>
-                <Button variant="outline">Xoá</Button>
-                <Button variant="default">Xác thực Email</Button>
+        <DialogContent className="max-w-lg p-0 overflow-hidden rounded-2xl shadow-xl">
+          <div className="flex flex-col sm:flex-row">
+            {/* Left: Avatar & Basic Info */}
+            <div className="bg-slate-50 flex flex-col items-center justify-center p-6 sm:w-1/3 border-b sm:border-b-0 sm:border-r">
+              <Avatar className="w-24 h-24 border-4 border-blue-200 shadow">
+                <AvatarImage
+                  src={modalUser?.avatar || images.avatar}
+                  alt={modalUser?.fullName}
+                />
+                <AvatarFallback>{modalUser?.fullName?.[0]}</AvatarFallback>
+              </Avatar>
+              <div className="mt-4 text-center">
+                <div className="font-bold text-lg text-slate-900">{modalUser?.fullName}</div>
+                <div className="text-slate-500 text-xs break-all">{modalUser?.email}</div>
+                <Badge className={`mt-2 ${getStatusColor(modalUser?.status)} text-xs px-3 py-1 rounded-full`}>
+                  {modalUser?.status === "Active" ? "Hoạt động" : "Không hoạt động"}
+                </Badge>
+                <div className="mt-1 text-xs text-slate-400">{modalUser?.role || "User"}</div>
               </div>
             </div>
-          )}
+            {/* Right: Details */}
+            <div className="flex-1 p-6 flex flex-col justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">Điện thoại</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.phoneNumber || "-"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">Giới tính</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.gender === "Male" ? "Nam" : "Nữ"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">Ngày sinh</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.dob || "-"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">Lịch trình</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.scheduleCount}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">2FA</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.twoFactorEnabled ? "Bật" : "Tắt"}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 mb-1">Sai đăng nhập</div>
+                  <div className="font-semibold text-slate-800">{modalUser?.accessFailedCount || 0}</div>
+                </div>
+              </div>
+              <Button
+                variant="destructive"
+                onClick={() => setOpenConfirmBan(true)}
+                disabled={banLoading || modalUser?.status === "Inactive"}
+                className="w-full mt-2 py-2 text-base font-semibold"
+              >
+                {banLoading ? "Đang khoá..." : modalUser?.status === "Inactive" ? "Đã bị khoá" : "Khoá tài khoản"}
+              </Button>
+              {banError && <div className="text-xs text-red-600 mt-2">{banError}</div>}
+              {banSuccess && <div className="text-xs text-green-600 mt-2">{banSuccess}</div>}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Confirm Ban Dialog */}
+      <Dialog open={openConfirmBan} onOpenChange={setOpenConfirmBan}>
+        <DialogContent className="max-w-xs text-center">
+          <div className="font-semibold text-lg mb-2">Xác nhận khoá tài khoản</div>
+          <div className="text-slate-600 mb-4">Bạn có chắc chắn muốn khoá tài khoản này không?</div>
+          <div className="flex gap-2 justify-center">
+            <Button variant="outline" onClick={() => setOpenConfirmBan(false)} className="flex-1">Huỷ</Button>
+            <Button variant="destructive" onClick={() => { setOpenConfirmBan(false); handleBanUser(); }} className="flex-1">Xác nhận</Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
   );
 }
+
