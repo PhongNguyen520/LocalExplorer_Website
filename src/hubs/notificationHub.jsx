@@ -19,14 +19,14 @@ export const startNotificationHub = (accessToken, onReceiveNotification) => {
   });
 
   connection.start()
-    .then(() => console.log("✅ Connected to notification hub"))
+    .then()
     .catch(err => console.error("❌ Hub connection error: ", err));
 };
 
 export const stopNotificationHub = () => {
   if (connection) {
     connection.stop()
-      .then(() => console.log("✅ Disconnected from notification hub"))
+      .then()
       .catch(err => console.error("❌ Error disconnecting from hub: ", err));
   }
 }; 

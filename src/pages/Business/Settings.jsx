@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Save, Upload, Eye, EyeOff, User, Shield, Settings as SettingsIcon, Camera } from 'lucide-react';
 import Header from '../../components/Business/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/Business/ui/Card';
 import Button from '../../components/Business/ui/Button';
 import { getProfileApi, updateProfileApi, changePasswordApi } from '../../api/user';
 import { notification, Divider, Badge } from 'antd';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const genderOptions = [
   { label: 'Nam', value: 'Male' },
@@ -26,6 +27,8 @@ const Settings = () => {
   const [loadingProfile, setLoadingProfile] = useState(false);
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [loadingPassword, setLoadingPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordSuccess, setPasswordSuccess] = useState("");
   const [passwordForm, setPasswordForm] = useState({
     currentPassword: '',
     newPassword: '',
@@ -38,6 +41,7 @@ const Settings = () => {
   });
   const [activeTab, setActiveTab] = useState('profile');
   const fileInputRef = useRef();
+  const { setAuth, auth } = useContext(AuthContext);
 
   useEffect(() => {
     setLoadingProfile(true);
@@ -94,6 +98,14 @@ const Settings = () => {
         }
       });
       await updateProfileApi(formData);
+      // Lấy lại profile mới nhất để cập nhật avatar và tên
+      const res = await getProfileApi();
+      const data = res.data.data;
+      setAuth(prev => ({
+        ...prev,
+        avatar: data.avatar,
+        fullName: (data.firstName || '') + ' ' + (data.lastName || ''),
+      }));
       notification.success({ 
         message: 'Thành công!', 
         description: 'Thông tin cá nhân đã được cập nhật',
@@ -117,8 +129,11 @@ const Settings = () => {
   const handlePasswordSubmit = async e => {
     e.preventDefault();
     setLoadingPassword(true);
+    setPasswordError("");
+    setPasswordSuccess("");
     try {
       await changePasswordApi(passwordForm);
+      setPasswordSuccess("Đổi mật khẩu thành công!");
       notification.success({ 
         message: 'Thành công!', 
         description: 'Mật khẩu đã được thay đổi',
@@ -126,6 +141,7 @@ const Settings = () => {
       });
       setPasswordForm({ currentPassword: '', newPassword: '', confirmNewPassword: '' });
     } catch (err) {
+      setPasswordError(err?.response?.data?.message || "Không thể thay đổi mật khẩu");
       notification.error({ 
         message: 'Lỗi!', 
         description: err?.response?.data?.message || 'Không thể thay đổi mật khẩu',
@@ -421,6 +437,16 @@ const Settings = () => {
                   </div>
                 </div>
 
+                {passwordSuccess && (
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-md mb-2">
+                    <p className="text-sm text-green-700 font-semibold">{passwordSuccess}</p>
+                  </div>
+                )}
+                {passwordError && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-md mb-2">
+                    <p className="text-sm text-red-600">{passwordError}</p>
+                  </div>
+                )}
                 <div className="flex justify-end">
                   <Button 
                     type="submit" 

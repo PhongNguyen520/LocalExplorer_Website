@@ -20,8 +20,6 @@ const Pricing = () => {
         setLoading(true);
         setError(null);
         const response = await getPricingPlanApi();
-        console.log("API Response:", response); // Debug log
-        
         if (response.data && response.data.data) {
           // Transform API data to match expected structure
           const transformedPlans = response.data.data.map(plan => ({
@@ -31,11 +29,9 @@ const Pricing = () => {
           }));
           setPricingPlans(transformedPlans);
         } else {
-          console.warn("No data from API");
           setPricingPlans([]);
         }
       } catch (error) {
-        console.error("Error fetching pricing plans:", error);
         setError(error.message || 'Có lỗi khi tải dữ liệu gói cước');
         setPricingPlans([]);
       } finally {
@@ -129,29 +125,27 @@ const Pricing = () => {
                 )}
               </ul>
 
-              <Button variant={plan.current ? "outline" : "primary"} className="w-full" disabled={plan.current}>
-                {plan.current ? "Đang sử dụng" : "Nâng cấp"}
-              </Button>
+              
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="mt-6 bg-yellow-50 border-yellow-200">
-        <CardContent className="p-6">
-          <div className="flex items-start gap-3">
-            <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center mt-0.5">
-              <span className="text-white text-xs">!</span>
+      <Card className="mt-6 border border-gray-200 bg-white shadow-sm rounded-xl">
+        <CardContent className="p-6 flex items-start gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
+              <span className="text-yellow-600 text-lg font-bold">!</span>
             </div>
-            <div>
-              <h4 className="font-medium text-yellow-800">
-                Lưu ý về nâng cấp gói
-              </h4>
-              <p className="text-sm text-yellow-700 mt-1">
-                Khi nâng cấp gói, bạn sẽ được tính phí theo tỷ lệ thời gian còn
-                lại trong tháng. Các tính năng mới sẽ có hiệu lực ngay lập tức.
-              </p>
-            </div>
+          </div>
+          <div>
+            <h4 className="font-semibold text-gray-800 mb-1">
+              Lưu ý về nâng cấp gói
+            </h4>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Khi nâng cấp gói, các tính năng của gói mới sẽ được kích hoạt ngay sau khi thanh toán hoàn tất. Khi gói hiện tại hết hạn, bạn cần thực hiện gia hạn hoặc lựa chọn nâng cấp lên gói cao hơn.<br />
+              Nếu gặp vấn đề trong quá trình thanh toán hoặc gia hạn, vui lòng liên hệ với chúng tôi qua email.
+            </p>
           </div>
         </CardContent>
       </Card>

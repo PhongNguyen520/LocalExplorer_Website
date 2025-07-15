@@ -220,7 +220,6 @@ export default function BusinessesPage() {
                   <TableHead>Gói dịch vụ</TableHead>
                   <TableHead>Giá</TableHead>
                   <TableHead>Trạng thái</TableHead>
-                  <TableHead className="text-right">Hành động</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -286,16 +285,7 @@ export default function BusinessesPage() {
                         : business.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="sm" title="Xem chi tiết">
-                          <Eye className="w-4 h-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <MoreHorizontal className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </TableCell>
+                    
                   </TableRow>
                 ))}
               </TableBody>

@@ -209,11 +209,11 @@ const Dashboard = () => {
                       {/* Image Section */}
                       <div className="w-full sm:w-48 flex-shrink-0 h-full">
                         <div className="aspect-[4/3] w-full h-full overflow-hidden rounded-t-xl sm:rounded-l-xl sm:rounded-tr-none border bg-slate-100 shadow-sm">
-                          <img
-                            src={business.background || images.noImage}
-                            alt={business.name}
+                        <img
+                          src={business.background || images.noImage}
+                          alt={business.name}
                             className="w-full h-full object-cover object-center"
-                          />
+                        />
                         </div>
                       </div>
 
@@ -288,40 +288,11 @@ const Dashboard = () => {
               <CardDescription className="text-sm">Các thông báo và cập nhật mới nhất</CardDescription>
             </CardHeader>
             <CardContent className="p-4 sm:p-6">
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-200">
-                  <MessageSquare className="h-3 w-3 sm:h-4 sm:w-4 mt-1 text-blue-500 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm font-medium text-slate-900">
-                      Feedback mới từ khách hàng
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      Bánh Căn Nhà Chung - 5 phút trước
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-green-50 rounded-lg border border-green-200">
-                  <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mt-1 text-green-500 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm font-medium text-slate-900">
-                      Sự kiện mới được tạo
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      Sushi Tokyo – 1 giờ trước
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-2 sm:gap-3 p-2 sm:p-3 bg-purple-50 rounded-lg border border-purple-200">
-                  <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 mt-1 text-purple-500 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm font-medium text-slate-900">
-                      Doanh thu tăng 15%
-                    </p>
-                    <p className="text-xs text-slate-500">So với tuần trước</p>
-                  </div>
-                </div>
+              <div className="flex flex-col items-center justify-center py-8 min-h-[300px]">
+                <span className="text-3xl mb-2">🕊️</span>
+                <p className="text-sm sm:text-base text-slate-500 font-medium">
+                  Chưa có hoạt động nào cả
+                </p>
               </div>
             </CardContent>
           </Card>

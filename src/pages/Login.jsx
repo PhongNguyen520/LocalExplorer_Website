@@ -51,7 +51,6 @@ const Login = () => {
       });
 
       startNotificationHub(data.accessToken, (message) => {
-        console.log("New notification received:", message);
       });
 
     } catch (err) {

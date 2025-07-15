@@ -21,6 +21,7 @@ const SignUp = () => {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
   const [showPassword, setShowPassword] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -37,6 +38,7 @@ const SignUp = () => {
       
       setSuccess("Đăng ký thành công! Kiểm tra email và xác minh tài khoản.")
       setForm(initialForm)
+      setShowSuccessModal(true)
     } catch (err) {
       setError(`${err.response.data.message || "Please try again later."}`)
     }
@@ -45,21 +47,43 @@ const SignUp = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-blue-50">
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center animate-in fade-in duration-200">
+            <div className="mb-4">
+              <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-2" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Đăng ký thành công!</h3>
+              <p className="text-gray-700 text-sm mb-2">Vui lòng xác nhận tài khoản trong email của bạn.</p>
+              <p className="text-gray-500 text-xs">Nếu không thấy email, hãy kiểm tra trong mục <span className='font-semibold'>Spam</span>.</p>
+            </div>
+            <a
+              href="https://mail.google.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-2 px-5 py-2 bg-orange-500 text-white rounded-lg font-semibold shadow hover:bg-orange-600 transition"
+              onClick={e => { setShowSuccessModal(false); }}
+            >
+              Đã hiểu
+            </a>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <Link to="/" className="flex items-center space-x-2 sm:space-x-3">
-                <img
-                  src={images.logo}
-                  alt="LocalExplore Logo"
+              <img
+                src={images.logo}
+                alt="LocalExplore Logo"
                   className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-lg object-cover"
                 />
-                <div>
+              <div>
                   <h1 className="text-lg sm:text-xl font-bold text-gray-900">LocalExplorer</h1>
-                  <p className="text-xs text-gray-500">Cổng thông tin đối tác kinh doanh</p>
-                </div>
+                <p className="text-xs text-gray-500">Cổng thông tin đối tác kinh doanh</p>
+              </div>
               </Link>
             </div>
             <div className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-50 text-blue-700 border border-blue-200">
@@ -155,7 +179,7 @@ const SignUp = () => {
               <div className="px-4 sm:px-6 pb-6 sm:pb-8">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
+                     <div className="space-y-2">
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                         Họ
                       </label>
