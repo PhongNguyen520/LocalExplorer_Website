@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import images from "../../assets/images";
 
-const androidAppUrl = "https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa";
+const androidAppUrl = "https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/ef31aba0-11cf-4ee4-9389-077e11bfe2ea";
 
 const travelerLinks = [
   { label: "Download App", href: androidAppUrl },
