@@ -40,7 +40,7 @@ const HeroSection = () => (
                 Tải app để khám phá, đặt trải nghiệm, nhận ưu đãi độc quyền!
               </p>
               <a
-                href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/baee485c-417d-41f7-bbd0-c9bb175634fa"
+                href="https://expo.dev/accounts/phongnguyenthanh04203/projects/LocalExplorer/builds/ef31aba0-11cf-4ee4-9389-077e11bfe2ea"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-gradient-to-r from-green-500 to-green-600 text-white px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg font-bold text-base shadow-lg hover:scale-105 transition-transform"
